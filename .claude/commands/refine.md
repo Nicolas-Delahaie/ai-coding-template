@@ -17,7 +17,7 @@ Invoque le sub-agent `pm` via le Agent tool avec ce contexte :
 > 3. Trouve le prochain numéro `NNN` libre (vérifier `ls backlog/ideas/ backlog/tasks/ backlog/archive/` pour le plus grand).
 > 4. `cp backlog/_template.md backlog/ideas/I-<NNN>-<slug-kebab>.md`
 > 5. Édite le fichier copié : remplit `id`, `title`, `type`, `priority`, `size`, `created`, `updated`, `status: idea`, objectif, scénario, AC initiaux.
-> 6. Mets à jour `ROADMAP.md` (ajoute la ligne dans "À explorer").
+> 6. Mets à jour `backlog/ROADMAP.md` (ajoute la ligne dans "À explorer").
 > 7. Confirme à l'utilisateur ce qui a été créé et la prochaine étape (`/refine I-<NNN>` pour affiner, ou `/dev` plus tard quand prêt).
 
 **Cas 2 — l'argument ressemble à un ID (`I-NNN` ou `T-NNN`)** : ticket existant à affiner.
@@ -30,7 +30,7 @@ Invoque le sub-agent `pm` via le Agent tool avec ce contexte :
 > 3. Pose des questions ciblées à l'utilisateur sur ces zones.
 > 4. Édite le ticket pour le rendre actionnable.
 > 5. Si c'était une `idea` et qu'elle est maintenant pleinement spécifiée (AC clairs, prio + taille), promeut en `spec` : `mv backlog/ideas/I-NNN-*.md backlog/tasks/T-NNN-*.md`, change `status: spec` dans le frontmatter, update `updated:`.
-> 6. Mets à jour `ROADMAP.md`.
+> 6. Mets à jour `backlog/ROADMAP.md`.
 > 7. Confirme à l'utilisateur le nouvel état du ticket.
 
-Dans les deux cas, **respecte la règle d'or** : toute modif de statut → `ROADMAP.md` à jour.
+Dans les deux cas, **respecte la règle d'or** : toute modif de statut → `backlog/ROADMAP.md` à jour.

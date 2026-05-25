@@ -7,7 +7,6 @@
 
 set -euo pipefail
 
-REPO="Nicolas-Delahaie/ai-coding-template"
 BRANCH="main"
 
 TMP=$(mktemp -d)
@@ -16,7 +15,7 @@ trap 'rm -rf "$TMP"' EXIT
 echo "📦 ai-coding-template → $(pwd)"
 echo ""
 
-curl -fsSL "https://github.com/$REPO/archive/$BRANCH.tar.gz" | tar xz -C "$TMP"
+curl -fsSL "https://github.com/Nicolas-Delahaie/ai-coding-template/archive/$BRANCH.tar.gz" | tar xz -C "$TMP"
 SRC="$TMP/$(ls "$TMP")"
 
 # Demande une lettre parmi $2 ; défaut "k" ; non-interactif → "k"
@@ -72,12 +71,12 @@ for d in .ai .claude backlog; do
   esac
 done
 
-# Fichiers racine (sauf install.sh + README.md)
+# Fichiers racine (sauf install.sh + README.md + .gitignore)
 echo ""
 while IFS= read -r -d '' f; do
   rel="${f#"$SRC"/}"
   [[ "$rel" == */* ]] && continue
-  [[ "$rel" == "install.sh" || "$rel" == "README.md" ]] && continue
+  [[ "$rel" == "install.sh" || "$rel" == "README.md" || "$rel" == ".gitignore" ]] && continue
 
   if [[ ! -e "./$rel" ]]; then
     cp "$f" "./$rel"
@@ -85,13 +84,9 @@ while IFS= read -r -d '' f; do
     continue
   fi
 
-  valid="krnb"
-  extra=""
-  if [[ "$rel" == ".gitignore" ]]; then valid="krnbm"; extra=" / [m]erge"; fi
-
   echo ""
-  echo "⚠️  Fichier $rel existe : [k]eep / [r]eplace / [n]ew / [b]ackup$extra"
-  case "$(ask "  Choix" "$valid")" in
+  echo "⚠️  Fichier $rel existe : [k]eep / [r]eplace / [n]ew / [b]ackup"
+  case "$(ask "  Choix" "krnb")" in
     k) echo "  ⊘ $rel gardé" ;;
     r) cp "$f" "./$rel"; echo "  ✓ $rel remplacé" ;;
     n) cp "$f" "./$rel.new"; echo "  ✓ $rel.new (à fusionner manuellement)" ;;
@@ -100,18 +95,6 @@ while IFS= read -r -d '' f; do
       mv "./$rel" "./$rel.bak-$ts"
       cp "$f" "./$rel"
       echo "  ✓ $rel (ancien → $rel.bak-$ts)"
-      ;;
-    m)
-      added=0
-      while IFS= read -r line || [[ -n "$line" ]]; do
-        [[ -z "$line" ]] && continue
-        if ! grep -Fxq -- "$line" "./$rel"; then
-          [[ $added -eq 0 ]] && printf '\n# Added by ai-coding-template\n' >> "./$rel"
-          printf '%s\n' "$line" >> "./$rel"
-          added=$((added + 1))
-        fi
-      done < "$f"
-      echo "  → $rel ($added ligne(s) ajoutée(s))"
       ;;
   esac
 done < <(find "$SRC" -maxdepth 1 -type f -print0)

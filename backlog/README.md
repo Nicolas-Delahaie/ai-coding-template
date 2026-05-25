@@ -1,6 +1,6 @@
 # Backlog — Guide d'utilisation
 
-> **Ce fichier n'est PAS un index.** L'index global est `ROADMAP.md` (racine).
+> **Ce fichier n'est PAS un index.** L'index global est `backlog/ROADMAP.md` (racine).
 > Pour l'historique complet : `ls archive/`.
 
 ## Structure
@@ -49,14 +49,14 @@ ideas/I-NNN-slug.md     ─(promotion)─►   tasks/T-NNN-slug.md   ─(archiva
 - **Transitions internes (`spec → dev → test → review`)** : édition du frontmatter `status:` uniquement.
 - **Archivage `review → done`** : `mv` vers `archive/`.
 
-**Règle d'or** : chaque transition de statut → **update immédiat** de `ROADMAP.md`.
+**Règle d'or** : chaque transition de statut → **update immédiat** de `backlog/ROADMAP.md`.
 
 ## Créer un nouveau ticket
 
 ```bash
 cp backlog/_template.md backlog/ideas/I-<NNN>-<slug>.md
 # Puis éditer le fichier copié : id, title, type, priority, size, dates, contenu.
-# Puis update ROADMAP.md.
+# Puis update backlog/ROADMAP.md.
 ```
 
 En pratique, utiliser `/refine` (le PM agent fait tout ça).
