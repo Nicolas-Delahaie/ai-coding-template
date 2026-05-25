@@ -5,49 +5,37 @@ Fournit la structure (méthodo, commands, agents, conventions) — **pas le code
 
 Conçu pour : usage solo, outil quotidien, contexte agent minimal et économe.
 
-## Démarrer un nouveau projet
+## Installer dans un projet **existant** (fusion non destructive)
+
+Depuis la racine du projet :
 
 ```bash
-git clone https://github.com/<votre-user>/ai-coding-template mon-projet
+curl -fsSL https://raw.githubusercontent.com/Nicolas-Delahaie/ai-coding-template/main/install.sh | bash
+```
+
+Le script télécharge le tarball, puis pour chaque dossier / fichier en conflit te demande quoi faire : **keep / merge / replace / backup** (et `new` pour les fichiers, `merge` spécial pour `.gitignore`). Zéro install machine (curl + bash).
+
+## Démarrer un **nouveau projet** (clone)
+
+```bash
+git clone https://github.com/Nicolas-Delahaie/ai-coding-template mon-projet
 cd mon-projet
 rm -rf .git && git init
 ```
 
-Ouvrir Claude Code dans le dossier, puis :
+L'initialisation du code applicatif (Flutter, autre stack) est **hors scope** : ajoutez-le après le clone.
 
-> "On démarre. Lis `README.md` et propose la première étape."
+## Structure du repo
 
-L'initialisation du code applicatif (Flutter, autre stack) est **hors scope** : ajoutez-le après le clone, comme vous voulez.
+- `CLAUDE.md` — pivot (règles d'or, routage, workflow, commands, sub-agents)
+- `ROADMAP.md` — source de vérité du backlog
+- `.ai/` — méthodologie (conventions, ADRs, choix de conception)
+- `backlog/` — tickets qui voyagent entre `ideas/` / `tasks/` / `archive/`
+- `.claude/` — slash commands + sub-agents + settings
 
-## Ce qui est dans le template
+## Pour aller plus loin
 
-- `CLAUDE.md` — pivot des règles d'or et table de routage (toujours chargé)
-- `ROADMAP.md` — source de vérité de l'état du backlog
-- `.ai/` — méthodologie (conventions code, ADRs, choix de conception du framework)
-- `backlog/` — tickets qui voyagent entre `ideas/`, `tasks/`, `archive/`
-- `.claude/` — slash commands et sub-agents
-
-Voir `.ai/DESIGN.md` (jamais lu automatiquement) pour comprendre **pourquoi** chaque choix de conception a été fait.
-
-## Workflow ticket
-
-`idea → spec → dev → test → review → done`
-
-Un ticket = **un fichier markdown qui voyage** entre `backlog/ideas/`, `backlog/tasks/`, `backlog/archive/`. Pas de duplication.
-
-## Commandes principales
-
-| Commande | Rôle |
-|---|---|
-| `/help` | Aide |
-| `/refine <id?>` | Créer une nouvelle idée OU affiner un ticket existant |
-| `/dev <id>` | Exécuter un ticket existant (code, tests, debug) |
-
-Le reste se fait en langage naturel (ex: "fais-moi le point" → l'agent lit `ROADMAP.md` et résume).
-
-## Sub-agents
-
-- `pm` — clarification / priorisation / roadmap / archivage
-- `dev` — code / test / debug
-
-Invoqués automatiquement par les commandes. Tu n'as jamais à les lancer à la main.
+- `CLAUDE.md` : la méthodologie complète (40 lignes)
+- `backlog/README.md` : workflow ticket détaillé
+- `.ai/DESIGN.md` : les choix de conception du framework et leur justification
+- Dans Claude Code, tape `/help` pour découvrir les commandes

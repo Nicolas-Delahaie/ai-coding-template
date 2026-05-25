@@ -86,6 +86,22 @@ Usage solo, outil quotidien, conventions Flutter par défaut (mais structure mé
 ### 18. Pas d'`INDEX.md` séparé dans `backlog/`
 **Pourquoi.** `ROADMAP.md` à la racine joue ce rôle (tickets actifs + 5 derniers `done`). Pour l'historique exhaustif : `ls backlog/archive/`. `backlog/README.md` n'est PAS un index — c'est un guide d'utilisation.
 
+### 19. Distribution dans projet existant : script `install.sh` bash, curlable, interactif
+**Pourquoi.** Tour d'horizon fait des alternatives :
+- `degit` / `giget` / `tiged` : pas de fusion conditionnelle (refusent dossier non-vide ou écrasent tout).
+- `copier` (Python) : ferait le job avec `copier update`, mais demande d'installer Python + pipx + copier sur la machine. Refusé.
+- Repo npx-able avec `package.json` : UX propre mais nécessite d'ajouter un `package.json` parasite à la racine du repo (non Node-natif). Refusé.
+- Bash `install.sh` curlable : zéro install machine, un seul fichier dans le repo, lecture directe (~120 lignes).
+
+**Stratégie de conflits interactive** : pour chaque dossier/fichier déjà présent dans le projet cible, l'utilisateur choisit l'action via prompt (lecture depuis `/dev/tty`, marche sous `curl … | bash`) :
+- **Dossiers** (`.ai/`, `.claude/`, `backlog/`) : `[k]eep` / `[m]erge` (copier les fichiers manquants) / `[r]eplace` (rm -rf + copy) / `[b]ackup` (rename ancien en `.bak-<timestamp>`).
+- **Fichiers racine** : `[k]eep` / `[r]eplace` / `[n]ew` (poser le nouveau en `.new` à côté) / `[b]ackup`. `.gitignore` a une option `[m]erge` (append lignes manquantes).
+
+**Trade-off accepté** : Unix only (curl + bash), pas de Windows. Acceptable pour un usage solo macOS/Linux.
+
+### 20. README minimaliste, non dupliqué avec CLAUDE.md
+**Pourquoi.** Le `README.md` est pour humains (présentation + installation + structure rapide + pointeurs). Toute la méthodologie (règles d'or, routage, workflow, commands, sub-agents) vit dans `CLAUDE.md` uniquement. Ça évite la dérive (deux sources à maintenir) et garde le README scannable en 10 secondes.
+
 ---
 
 ## Sources d'inspiration éprouvées
