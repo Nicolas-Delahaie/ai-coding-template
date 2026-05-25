@@ -1,36 +1,36 @@
 ---
-description: Créer une nouvelle idée OU affiner un ticket existant (invoque le PM agent)
-argument-hint: "[id-optionnel-ou-description]"
+description: Create a new idea OR refine an existing ticket (invokes the PM agent)
+argument-hint: "[optional-id-or-description]"
 ---
 
-L'utilisateur invoque `/refine $ARGUMENTS`.
+The user invokes `/refine $ARGUMENTS`.
 
-Analyse l'argument et délègue au sub-agent `pm` :
+Analyze the argument and delegate to the `pm` sub-agent:
 
-**Cas 1 — l'argument est vide ou ne ressemble pas à un ID (`I-NNN` ou `T-NNN`)** : nouvelle idée à créer.
+**Case 1 — the argument is empty or doesn't look like an ID (`I-NNN` or `T-NNN`)**: new idea to create.
 
-Invoque le sub-agent `pm` via le Agent tool avec ce contexte :
-> Mission : créer une nouvelle idée à partir de la description "$ARGUMENTS" (peut être vide).
+Invoke the `pm` sub-agent via the Agent tool with this context:
+> Mission: create a new idea from the description "$ARGUMENTS" (may be empty).
 >
-> 1. Pose 3-5 questions de clarification à l'utilisateur AVANT d'écrire quoi que ce soit (objectif, scénario d'usage, critère de succès, hors-scope, dépendances éventuelles).
-> 2. Une fois les réponses obtenues, identifie le `type` : feature / fix / chore / spike.
-> 3. Trouve le prochain numéro `NNN` libre (vérifier `ls backlog/ideas/ backlog/tasks/ backlog/archive/` pour le plus grand).
-> 4. `cp backlog/_template.md backlog/ideas/I-<NNN>-<slug-kebab>.md`
-> 5. Édite le fichier copié : remplit `id`, `title`, `type`, `priority`, `size`, `created`, `updated`, `status: idea`, objectif, scénario, AC initiaux.
-> 6. Mets à jour `backlog/ROADMAP.md` (ajoute la ligne dans "À explorer").
-> 7. Confirme à l'utilisateur ce qui a été créé et la prochaine étape (`/refine I-<NNN>` pour affiner, ou `/dev` plus tard quand prêt).
+> 1. Ask the user 3-5 clarification questions BEFORE writing anything (goal, usage scenario, success criterion, out-of-scope, possible dependencies).
+> 2. Once answers are received, identify the `type`: feature / fix / chore / spike.
+> 3. Find the next free `NNN` number (check `ls backlog/ideas/ backlog/tasks/ backlog/archive/` for the highest).
+> 4. `cp backlog/_template.md backlog/ideas/I-<NNN>-<kebab-slug>.md`
+> 5. Edit the copied file: fill in `id`, `title`, `type`, `priority`, `size`, `created`, `updated`, `status: idea`, goal, scenario, initial AC.
+> 6. Update `backlog/ROADMAP.md` (add the line in "To explore").
+> 7. Confirm to the user what was created and the next step (`/refine I-<NNN>` to refine, or `/dev` later when ready).
 
-**Cas 2 — l'argument ressemble à un ID (`I-NNN` ou `T-NNN`)** : ticket existant à affiner.
+**Case 2 — the argument looks like an ID (`I-NNN` or `T-NNN`)**: existing ticket to refine.
 
-Invoque le sub-agent `pm` via le Agent tool avec ce contexte :
-> Mission : affiner le ticket existant `$ARGUMENTS`.
+Invoke the `pm` sub-agent via the Agent tool with this context:
+> Mission: refine the existing ticket `$ARGUMENTS`.
 >
-> 1. Lis `backlog/ideas/$ARGUMENTS-*.md` ou `backlog/tasks/$ARGUMENTS-*.md`.
-> 2. Identifie les zones d'ombre (AC vagues, prio non définie, taille manquante, scénario flou).
-> 3. Pose des questions ciblées à l'utilisateur sur ces zones.
-> 4. Édite le ticket pour le rendre actionnable.
-> 5. Si c'était une `idea` et qu'elle est maintenant pleinement spécifiée (AC clairs, prio + taille), promeut en `spec` : `mv backlog/ideas/I-NNN-*.md backlog/tasks/T-NNN-*.md`, change `status: spec` dans le frontmatter, update `updated:`.
-> 6. Mets à jour `backlog/ROADMAP.md`.
-> 7. Confirme à l'utilisateur le nouvel état du ticket.
+> 1. Read `backlog/ideas/$ARGUMENTS-*.md` or `backlog/tasks/$ARGUMENTS-*.md`.
+> 2. Identify grey areas (vague AC, undefined priority, missing size, unclear scenario).
+> 3. Ask the user targeted questions about these areas.
+> 4. Edit the ticket to make it actionable.
+> 5. If it was an `idea` and is now fully specified (clear AC, prio + size defined), promote to `spec`: `mv backlog/ideas/I-NNN-*.md backlog/tasks/T-NNN-*.md`, change `status: spec` in frontmatter, update `updated:`.
+> 6. Update `backlog/ROADMAP.md`.
+> 7. Confirm to the user the new ticket state.
 
-Dans les deux cas, **respecte la règle d'or** : toute modif de statut → `backlog/ROADMAP.md` à jour.
+In both cases, **follow the golden rule**: any status change → `backlog/ROADMAP.md` up to date.

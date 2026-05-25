@@ -1,70 +1,70 @@
-# Backlog — Guide d'utilisation
+# Backlog — Usage Guide
 
-> **Ce fichier n'est PAS un index.** L'index global est `backlog/ROADMAP.md` (racine).
-> Pour l'historique complet : `ls archive/`.
+> **This file is NOT an index.** The global index is `backlog/ROADMAP.md` (root).
+> For full history: `ls archive/`.
 
 ## Structure
 
 ```
 backlog/
-├── _template.md   # Gabarit ticket. À copier via `cp`, pas à éditer en place.
-├── README.md      # Ce fichier.
-├── ideas/         # Tickets statut: idea (brouillons non spécifiés)
-├── tasks/         # Tickets statut: spec | dev | test | review (actifs)
-└── archive/       # Tickets statut: done
+├── _template.md   # Ticket template. Copy via `cp`, don't edit in place.
+├── README.md      # This file.
+├── ideas/         # Tickets status: idea (unspecified drafts)
+├── tasks/         # Tickets status: spec | dev | test | review (active)
+└── archive/       # Tickets status: done
 ```
 
-## Conventions de nommage
+## Naming conventions
 
-- **Idée brute** : `I-NNN-slug-court.md` (préfixe `I` = idea)
-- **Tâche spécifiée** : `T-NNN-slug-court.md` (préfixe `T` = task)
-- Le numéro `NNN` est **monotone** (jamais réutilisé), peu importe si I ou T.
-- Le slug est en kebab-case, court, descriptif.
+- **Raw idea**: `I-NNN-short-slug.md` (prefix `I` = idea)
+- **Specified task**: `T-NNN-short-slug.md` (prefix `T` = task)
+- The `NNN` number is **monotonically increasing** (never reused), regardless of I or T.
+- Slug is kebab-case, short, descriptive.
 
-Exemples : `I-007-mode-collaboratif.md`, `T-042-auth-email-password.md`.
+Examples: `I-007-collaborative-mode.md`, `T-042-email-password-auth.md`.
 
-## Workflow ticket (6 statuts)
+## Ticket workflow (6 statuses)
 
 ```
 idea → spec → dev → test → review → done
 ```
 
-| Statut | Sens | Localisation |
+| Status | Meaning | Location |
 |---|---|---|
-| `idea` | Brouillon, pas encore exploré | `ideas/I-NNN-*.md` |
-| `spec` | Exploré, AC définis, prêt à attaquer | `tasks/T-NNN-*.md` |
-| `dev` | En cours d'implémentation | `tasks/T-NNN-*.md` |
-| `test` | Code écrit, tests en écriture/exécution | `tasks/T-NNN-*.md` |
-| `review` | Tests verts, attente validation humaine | `tasks/T-NNN-*.md` |
-| `done` | Validé et archivé | `archive/T-NNN-*.md` |
+| `idea` | Draft, not yet explored | `ideas/I-NNN-*.md` |
+| `spec` | Explored, AC defined, ready to tackle | `tasks/T-NNN-*.md` |
+| `dev` | Being implemented | `tasks/T-NNN-*.md` |
+| `test` | Code written, tests being written/run | `tasks/T-NNN-*.md` |
+| `review` | Tests green, awaiting human validation | `tasks/T-NNN-*.md` |
+| `done` | Validated and archived | `archive/T-NNN-*.md` |
 
-## Transitions (le fichier voyage)
+## Transitions (the file travels)
 
 ```
-ideas/I-NNN-slug.md     ─(promotion)─►   tasks/T-NNN-slug.md   ─(archivage)─►   archive/T-NNN-slug.md
+ideas/I-NNN-slug.md     ─(promotion)─►   tasks/T-NNN-slug.md   ─(archiving)─►   archive/T-NNN-slug.md
        (idea)                              (spec → dev → test → review)              (done)
 ```
 
-- **Promotion `idea → spec`** : `mv` + renommage (`I-` → `T-`).
-- **Transitions internes (`spec → dev → test → review`)** : édition du frontmatter `status:` uniquement.
-- **Archivage `review → done`** : `mv` vers `archive/`.
+- **Promotion `idea → spec`**: `mv` + rename (`I-` → `T-`).
+- **Internal transitions (`spec → dev → test → review`)**: edit `status:` frontmatter only.
+- **Archiving `review → done`**: `mv` to `archive/`.
 
-**Règle d'or** : chaque transition de statut → **update immédiat** de `backlog/ROADMAP.md`.
+**Golden rule**: every status transition → **immediate update** of `ROADMAP.md`.
 
-## Créer un nouveau ticket
+## Creating a new ticket
 
 ```bash
 cp backlog/_template.md backlog/ideas/I-<NNN>-<slug>.md
-# Puis éditer le fichier copié : id, title, type, priority, size, dates, contenu.
-# Puis update backlog/ROADMAP.md.
+# Then edit the copied file: id, title, type, priority, size, dates, content.
+# Then update ROADMAP.md.
 ```
 
-En pratique, utiliser `/refine` (le PM agent fait tout ça).
+In practice, use `/refine` (the PM agent handles all of this).
 
 ## Acceptance criteria (AC)
 
-Une liste de checkboxes vérifiables. Doivent répondre à : "comment je sais que c'est terminé ?".
+A list of verifiable checkboxes. Must answer: "how do I know this is done?".
 
-Exemples :
-- ✅ `[ ] L'utilisateur peut se connecter avec un email + mot de passe valide`
-- ❌ `[ ] Authentification fonctionne` (trop vague)
+Examples:
+- ✅ `[ ] User can log in with a valid email + password`
+- ❌ `[ ] Authentication works` (too vague)

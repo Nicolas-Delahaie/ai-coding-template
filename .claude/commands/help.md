@@ -1,43 +1,43 @@
 ---
-description: Affiche l'aide du framework (commandes, sub-agents, workflow ticket)
+description: Display framework help (commands, sub-agents, ticket workflow)
 ---
 
-Affiche à l'utilisateur un récapitulatif clair et concis du framework. Sans lire ROADMAP ni les tickets — juste le formatage statique ci-dessous.
+Display a clear and concise summary of the framework to the user. Without reading ROADMAP or tickets — just the static formatting below.
 
 ```
 🤖 Framework ai-coding-template
 
-COMMANDES
-  /help              Cette aide
-  /refine <id?>      Créer une nouvelle idée (sans ID) ou affiner un ticket existant (avec ID).
-                     Marche pour feature, fix, chore, spike — peu importe le type.
-                     Invoque le sub-agent `pm`.
-  /dev <id>          Exécuter un ticket existant (code, tests, debug).
-                     Invoque le sub-agent `dev`.
+COMMANDS
+  /help              This help
+  /refine <id?>      Create a new idea (no ID) or refine an existing ticket (with ID).
+                     Works for feature, fix, chore, spike — regardless of type.
+                     Invokes the `pm` sub-agent.
+  /dev <id>          Execute an existing ticket (code, tests, debug).
+                     Invokes the `dev` sub-agent.
 
-LANGAGE NATUREL (pas besoin de commande)
-  "fais-moi le point"    → l'agent lit ROADMAP.md et résume
-  "j'ai une idée: X"     → équivalent à /refine "X"
-  "il y a un bug: X"     → équivalent à /refine "X" (le PM créera un ticket type fix)
+NATURAL LANGUAGE (no command needed)
+  "give me a status"     → agent reads ROADMAP.md and summarizes
+  "I have an idea: X"    → equivalent to /refine "X"
+  "there's a bug: X"     → equivalent to /refine "X" (PM will create a fix ticket)
 
-WORKFLOW TICKET
+TICKET WORKFLOW
   idea → spec → dev → test → review → done
-  Le ticket est UN fichier markdown qui voyage entre :
+  The ticket is ONE markdown file that travels between:
     backlog/ideas/I-NNN-slug.md  (idea)
     backlog/tasks/T-NNN-slug.md  (spec/dev/test/review)
     backlog/archive/T-NNN-slug.md (done)
 
-RÈGLE D'OR
-  Toute modif de statut → ROADMAP.md mis à jour immédiatement.
+GOLDEN RULE
+  Any status change → ROADMAP.md updated immediately.
 
-SUB-AGENTS (invoqués automatiquement par les commandes)
-  pm   — clarification / priorisation / roadmap / archivage
+SUB-AGENTS (invoked automatically by commands)
+  pm   — clarification / prioritization / roadmap / archiving
   dev  — code / test / debug
 
-POUR EN SAVOIR PLUS
-  CLAUDE.md           règles d'or + table de routage
-  backlog/README.md   workflow ticket détaillé
-  .ai/conventions/    conventions de code
-  .ai/decisions/      ADRs (décisions tech)
-  .ai/DESIGN.md       choix de conception du framework (lu sur demande uniquement)
+TO LEARN MORE
+  CLAUDE.md           golden rules + routing table
+  backlog/README.md   detailed ticket workflow
+  .ai/conventions/    code conventions
+  .ai/decisions/      ADRs (tech decisions)
+  .ai/DESIGN.md       framework design decisions (read on demand only)
 ```

@@ -1,6 +1,6 @@
 ---
 id: T-NNN
-title: <Titre court et précis>
+title: <Short precise title>
 type: feature       # feature | fix | chore | spike
 priority: now       # now | next | later
 size: M             # XS | S | M | L
@@ -10,29 +10,29 @@ created: YYYY-MM-DD
 updated: YYYY-MM-DD
 ---
 
-## Objectif
+## Goal
 
-Pourquoi ce ticket existe. Problème utilisateur résolu ou besoin technique justifié.
+Why this ticket exists. User problem solved or justified technical need.
 
-## Scénario d'usage
+## Usage scenario
 
-Comment l'utilisateur (ou le système) interagit concrètement. Étapes / parcours.
+How the user (or system) interacts concretely. Steps / journey.
 
 ## Acceptance criteria
 
-- [ ] Critère 1 (vérifiable)
-- [ ] Critère 2
-- [ ] Critère 3
+- [ ] Criterion 1 (verifiable)
+- [ ] Criterion 2
+- [ ] Criterion 3
 
-## Notes techniques
+## Technical notes
 
-Décisions de design, contraintes, références aux ADRs (`.ai/decisions/NNNN-*.md`).
+Design decisions, constraints, references to ADRs (`.ai/decisions/NNNN-*.md`).
 
-## Dépendances
+## Dependencies
 
-- **Bloque** : T-NNN
-- **Bloqué par** : T-NNN
+- **Blocks**: T-NNN
+- **Blocked by**: T-NNN
 
-## Historique
+## History
 
-- YYYY-MM-DD : créé (idea)
+- YYYY-MM-DD: created (idea)

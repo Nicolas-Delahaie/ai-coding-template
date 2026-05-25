@@ -1,72 +1,70 @@
 # ai-coding-template
 
-Squelette de **méthodologie IA** pour vibe coder un projet solo avec Claude Code.
-Fournit la structure (méthodo, commands, agents, conventions) — **pas le code applicatif**.
+**AI methodology** skeleton for solo vibe coding with Claude Code.
+Provides the structure (methodology, commands, agents, conventions) — **not the application code**.
 
-Conçu pour : usage solo, outil quotidien, contexte agent minimal et économe.
+Designed for: solo use, daily tool, minimal and lean agent context.
 
-> **Tout est en français** : langue native, plus simple à maintenir et à utiliser au quotidien. Facilement forkable / anglicisable avec un simple prompt si besoin.
+## Install in an existing project
 
-## Installer dans un projet existant
-
-Depuis la racine du projet cible :
+From the root of your target project:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/Nicolas-Delahaie/ai-coding-template/main/install.sh | bash
 ```
 
-Le script télécharge le tarball, puis pour chaque dossier / fichier en conflit te demande quoi faire : **keep / merge / replace / backup** (et `new` pour les fichiers). Zéro install machine (curl + bash).
+The script downloads the tarball, then for each conflicting folder / file asks what to do: **keep / merge / replace / backup** (and `new` for files). Zero machine install (curl + bash).
 
-## Structure du repo
+## Repository structure
 
-- `CLAUDE.md` — pivot (règles d'or, routage, workflow, commands, sub-agents)
-- `.ai/` — méthodologie (conventions, ADRs + index)
-- `backlog/` — tickets (`ideas/` / `tasks/` / `archive/`) + `ROADMAP.md` (source de vérité)
+- `CLAUDE.md` — pivot (golden rules, routing, workflow, commands, sub-agents)
+- `.ai/` — methodology (conventions, ADRs + index)
+- `backlog/` — tickets (`ideas/` / `tasks/` / `archive/`) + `ROADMAP.md` (source of truth)
 - `.claude/` — slash commands + sub-agents + settings
 
-## Pour aller plus loin
+## Going further
 
-- `CLAUDE.md` : la méthodologie complète (~40 lignes)
-- `backlog/README.md` : workflow ticket détaillé
-- Dans Claude Code, tape `/help` pour découvrir les commandes
+- `CLAUDE.md`: the full methodology (~40 lines)
+- `backlog/README.md`: detailed ticket workflow
+- In Claude Code, type `/help` to discover commands
 
 ---
 
-## Choix de conception (pour les contributeurs / forks)
+## Design decisions (for contributors / forks)
 
-> Ces choix sont intentionnellement absents du projet cible — ils ne figurent que dans ce README.
+> These decisions are intentionally absent from the target project — they only appear in this README.
 
-### Besoin fondateur
+### Core need
 
-Avoir un agent avec un **contexte actif faible, très efficient et économe**. L'agent ne charge QUE le contexte nécessaire à la tâche en cours. Le système reste scalable quand le projet grossit.
+An agent with a **low active context, very efficient and lean**. The agent loads ONLY the context needed for the current task. The system stays scalable as the project grows.
 
-### Règle d'or
+### Golden rule
 
-Toute modif de statut d'un ticket → `ROADMAP.md` mis à jour immédiatement. La roadmap est la source de vérité permanente de l'état du backlog.
+Any ticket status change → `ROADMAP.md` updated immediately. The roadmap is the permanent source of truth for the backlog state.
 
-### Décisions structurantes
+### Key decisions
 
-| # | Choix | Pourquoi |
-|---|-------|---------|
-| 1 | Repo séparé `ai-coding-template`, vierge, clonable | Versionné, évolutif, partageable. Pas de script de bootstrap : `git clone` suffit. |
-| 2 | 1 seul `CLAUDE.md` root (ultra court, ~40 lignes) | Économie tokens. Pas de hiérarchie de CLAUDE.md (créés ponctuellement si une zone le justifie). |
-| 3 | 2 sub-agents : PM + Dev | Les prompts détaillés vivent dans les agents (chargés à la demande), pas dans CLAUDE.md. Le main agent reste léger. |
-| 4 | Amélioration framework = pro-activité légère intégrée dans PM/Dev | Pas de fichier `IMPROVEMENTS.md` ni de mécanisme dédié. PM et Dev mentionnent une amélioration uniquement si vraiment pertinent. |
-| 5 | 3 slash commands en anglais : `/help` `/refine` `/dev` | Points d'entrée user qui invoquent les bons agents avec le bon contexte préchargé. `/refine` = idéation + raffinement. `/dev` = exécution. `/help` = aide. Le reste se fait en langage naturel. |
-| 6 | 1 ticket = 1 fichier markdown qui voyage entre `ideas/` → `tasks/` → `archive/` | Pas de doublon. `mv` à chaque transition. |
-| 7 | Schéma ticket : `type` + `priority` + `size` + `status` + `acceptance criteria` | Suffisamment riche pour priorisation Scrum solo, sans sur-engineering. |
-| 8 | Workflow ticket : `idea → spec → dev → test → review → done` | 6 statuts. Distingue dev (code), test (tests auto), review (validation humaine). |
-| 9 | Roadmap = table markdown compacte dans `backlog/` | Solo + git versionne tout l'historique. Colocalisée avec les tickets. Trello inutile (lecture native par l'agent, zéro friction). |
-| 10 | Méthodo dans `.ai/` (distinct de `.claude/` natif) | Sépare clairement : `.claude/` = configs Claude Code natives. `.ai/` = méthodologie projet. |
-| 11 | Conventions code : 1 seul fichier `.ai/conventions/code.md` | Économie de fichiers. Un seul fichier à lire pour les conventions techniques. |
-| 12 | Glossaire métier : non créé par défaut | Optionnel, le user le crée si vocab complexe. Évite de polluer avec un fichier vide. |
-| 13 | Le template ne touche PAS à `lib/` | Le template = méthodologie IA uniquement. Le code (Flutter ou autre) est ajouté par le user après clone, comme il veut. |
-| 14 | Méta-fichiers préfixés `_` : `_template.md`, `_index.md` | Distingue visuellement les gabarits/index des vrais fichiers numérotés (`NNNN-*.md`). Le `_` les fait remonter en tête dans un `ls` trié. |
-| 15 | Templates physiques de ticket et ADR : `_template.md` à côté de leur dossier | Copiés via `cp` puis renommés/édités. Pas de format inline dans les README (économie de tokens à la lecture). |
-| 16 | Index ADR léger : `.ai/decisions/_index.md` | Une ligne par ADR (résumé + statut). Chargé UNIQUEMENT quand l'agent doit retrouver un choix passé. Jamais auto-loadé. |
-| 17 | `backlog/ROADMAP.md` (dans `backlog/`, pas à la racine) | Colocalisé avec les tickets qu'il indexe. La racine reste épurée. |
-| 18 | Pas d'`INDEX.md` séparé dans `backlog/` | `backlog/ROADMAP.md` joue ce rôle. Pour l'historique exhaustif : `ls backlog/archive/`. `backlog/README.md` = guide d'utilisation, pas un index. |
-| 19 | Distribution via `install.sh` bash curlable | Zéro install machine. `degit`/`copier`/`npx` rejetés (écrasent ou requièrent install). Bash = un seul fichier, fusion interactive par prompt. |
-| 20 | `README.md` non copié par install.sh | Évite d'écraser le README du projet cible. Les choix de conception du framework y sont conservés sans polluer le projet cible. |
-| 21 | `.gitignore` non copié par install.sh | Le projet cible a son propre `.gitignore`. On ne l'écrase pas, on ne le fusionne pas. |
-| 22 | README minimaliste, non dupliqué avec CLAUDE.md | Le README est pour humains (présentation + installation + structure). Toute la méthodologie vit dans CLAUDE.md. Évite la dérive (deux sources à maintenir). |
+| # | Choice | Why |
+|---|--------|-----|
+| 1 | Separate `ai-coding-template` repo, blank, cloneable | Versioned, evolvable, shareable. No bootstrap script: `git clone` is enough. |
+| 2 | 1 root `CLAUDE.md` (ultra short, ~40 lines) | Token economy. No CLAUDE.md hierarchy (created occasionally if a zone justifies it). |
+| 3 | 2 sub-agents: PM + Dev | Detailed prompts live in agents (loaded on demand), not in CLAUDE.md. The main agent stays lean. |
+| 4 | Framework improvement = light proactivity built into PM/Dev | No `IMPROVEMENTS.md` file or dedicated mechanism. PM and Dev mention an improvement only if truly relevant. |
+| 5 | 3 slash commands: `/help` `/refine` `/dev` | User entry points that invoke the right agents with the right preloaded context. `/refine` = ideation + refinement. `/dev` = execution. `/help` = help. The rest in natural language. |
+| 6 | 1 ticket = 1 markdown file that travels between `ideas/` → `tasks/` → `archive/` | No duplication. `mv` at each transition. |
+| 7 | Ticket schema: `type` + `priority` + `size` + `status` + `acceptance criteria` | Rich enough for solo Scrum prioritization, without over-engineering. |
+| 8 | Ticket workflow: `idea → spec → dev → test → review → done` | 6 statuses. Distinguishes dev (code), test (automated tests), review (human validation). |
+| 9 | Roadmap = compact markdown table in `backlog/` | Solo + git versions all history. Co-located with tickets. Trello unnecessary (native agent reading, zero friction). |
+| 10 | Methodology in `.ai/` (distinct from native `.claude/`) | Clear separation: `.claude/` = native Claude Code configs. `.ai/` = project methodology. |
+| 11 | Code conventions: 1 single file `.ai/conventions/code.md` | File economy. One file to read for technical conventions. |
+| 12 | Business glossary: not created by default | Optional, user creates it if vocabulary is complex. Avoids polluting with an empty file. |
+| 13 | Template does NOT touch `lib/` | Template = AI methodology only. Code (Flutter or other) is added by user after clone, as they wish. |
+| 14 | Meta-files prefixed with `_`: `_template.md`, `_index.md` | Visually distinguishes templates/indexes from real numbered files (`NNNN-*.md`). `_` brings them to the top in a sorted `ls`. |
+| 15 | Physical ticket and ADR templates: `_template.md` next to their folder | Copied via `cp` then renamed/edited. No inline format in READMEs (token economy when reading). |
+| 16 | Lightweight ADR index: `.ai/decisions/_index.md` | One line per ADR (summary + status). Loaded ONLY when the agent needs to find a past decision. Never auto-loaded. |
+| 17 | `backlog/ROADMAP.md` (in `backlog/`, not at root) | Co-located with the tickets it indexes. The root stays clean. |
+| 18 | No separate `INDEX.md` in `backlog/` | `backlog/ROADMAP.md` plays that role. For full history: `ls backlog/archive/`. `backlog/README.md` = usage guide, not an index. |
+| 19 | Distribution via curlable bash `install.sh` | Zero machine install. `degit`/`copier`/`npx` rejected (overwrite or require install). Bash = single file, interactive merge by prompt. |
+| 20 | `README.md` not copied by install.sh | Avoids overwriting the target project's README. Framework design decisions are preserved without polluting the target project. |
+| 21 | `.gitignore` not copied by install.sh | The target project has its own `.gitignore`. We don't overwrite or merge it. |
+| 22 | Minimalist README, not duplicated with CLAUDE.md | README is for humans (presentation + install + structure). All methodology lives in CLAUDE.md. Avoids drift (two sources to maintain). |

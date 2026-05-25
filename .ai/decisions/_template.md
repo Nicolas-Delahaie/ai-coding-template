@@ -1,44 +1,44 @@
-# ADR-NNNN : <Titre court de la décision>
+# ADR-NNNN: <Short decision title>
 
-- **Status** : proposed | accepted | superseded | deprecated
-- **Date** : YYYY-MM-DD
-- **Supersedes** : (optionnel) ADR-NNNN
-- **Superseded by** : (optionnel) ADR-NNNN
+- **Status**: proposed | accepted | superseded | deprecated
+- **Date**: YYYY-MM-DD
+- **Supersedes**: (optional) ADR-NNNN
+- **Superseded by**: (optional) ADR-NNNN
 
-## Contexte
+## Context
 
-Quel problème on résout. Quelles forces sont en jeu (techniques, business, contraintes). Pourquoi cette décision se pose maintenant.
+What problem we're solving. What forces are at play (technical, business, constraints). Why this decision arises now.
 
-## Options envisagées
+## Options considered
 
-### Option A — <nom>
-- Pros : ...
-- Cons : ...
+### Option A — <name>
+- Pros: ...
+- Cons: ...
 
-### Option B — <nom>
-- Pros : ...
-- Cons : ...
+### Option B — <name>
+- Pros: ...
+- Cons: ...
 
-### Option C — <nom> (optionnel)
-- Pros : ...
-- Cons : ...
+### Option C — <name> (optional)
+- Pros: ...
+- Cons: ...
 
-## Décision
+## Decision
 
-On choisit **Option X** parce que ...
+We choose **Option X** because ...
 
-## Conséquences
+## Consequences
 
-### Positives
+### Positive
 - ...
 
-### Négatives
+### Negative
 - ...
 
-### Neutres (à surveiller)
+### Neutral (to watch)
 - ...
 
-## Références
+## References
 
-- Tickets liés : T-NNN, T-NNN
-- Liens externes : ...
+- Related tickets: T-NNN, T-NNN
+- External links: ...

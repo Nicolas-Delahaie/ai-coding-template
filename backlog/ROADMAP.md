@@ -1,30 +1,30 @@
 # Roadmap
 
-> **Source de vérité** de l'état du backlog. Doit refléter en permanence l'état réel des tickets sur disque.
-> Mise à jour **immédiate** à chaque transition de statut d'un ticket (règle d'or).
+> **Source of truth** of the backlog state. Must permanently reflect the real state of tickets on disk.
+> **Immediate** update at every ticket status transition (golden rule).
 
-## En cours (`dev` / `test` / `review`)
+## In progress (`dev` / `test` / `review`)
 
-| ID | Titre | Type | Prio | Taille | Statut | Maj |
-|----|-------|------|------|--------|--------|-----|
+| ID | Title | Type | Prio | Size | Status | Updated |
+|----|-------|------|------|------|--------|---------|
 | — | — | — | — | — | — | — |
 
-## Prête à attaquer (`spec`)
+## Ready to tackle (`spec`)
 
-| ID | Titre | Type | Prio | Taille | Maj |
-|----|-------|------|------|--------|-----|
+| ID | Title | Type | Prio | Size | Updated |
+|----|-------|------|------|------|---------|
 | — | — | — | — | — | — |
 
-## À explorer (`idea`)
+## To explore (`idea`)
 
-| ID | Titre | Prio | Maj |
-|----|-------|------|-----|
+| ID | Title | Prio | Updated |
+|----|-------|------|---------|
 | — | — | — | — |
 
-## Archive récente (5 derniers `done`)
+## Recent archive (last 5 `done`)
 
-| ID | Titre | Date done |
+| ID | Title | Done date |
 |----|-------|-----------|
 | — | — | — |
 
-> Historique complet : `ls backlog/archive/`
+> Full history: `ls backlog/archive/`

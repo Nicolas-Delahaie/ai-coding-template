@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 #
-# ai-coding-template — installateur dans un projet existant
+# ai-coding-template — installer for an existing project
 #
-# Usage :
+# Usage:
 #   curl -fsSL https://raw.githubusercontent.com/Nicolas-Delahaie/ai-coding-template/main/install.sh | bash
 
 set -euo pipefail
@@ -18,7 +18,7 @@ echo ""
 curl -fsSL "https://github.com/Nicolas-Delahaie/ai-coding-template/archive/$BRANCH.tar.gz" | tar xz -C "$TMP"
 SRC="$TMP/$(ls "$TMP")"
 
-# Demande une lettre parmi $2 ; défaut "k" ; non-interactif → "k"
+# Ask for one letter among $2; default "k"; non-interactive → "k"
 ask() {
   local prompt="$1" valid="$2" choice
   while true; do
@@ -29,27 +29,27 @@ ask() {
       printf '%s' "$choice"
       return
     fi
-    printf '  ⚠️  Une lettre parmi : %s\n' "$valid" > /dev/tty
+    printf '  ⚠️  One letter among: %s\n' "$valid" > /dev/tty
   done
 }
 
-# Dossiers top-level
+# Top-level folders
 for d in .ai .claude backlog; do
   src="$SRC/$d"
   [[ -d "$src" ]] || continue
 
   if [[ ! -e "./$d" ]]; then
     cp -R "$src" "./$d"
-    echo "  ✓ $d/ (nouveau)"
+    echo "  ✓ $d/ (new)"
     continue
   fi
 
   echo ""
-  echo "⚠️  Dossier $d/ existe : [k]eep / [m]erge / [r]eplace / [b]ackup"
-  case "$(ask "  Choix" "kmrb")" in
-    k) echo "  ⊘ $d/ gardé" ;;
+  echo "⚠️  Folder $d/ exists: [k]eep / [m]erge / [r]eplace / [b]ackup"
+  case "$(ask "  Choice" "kmrb")" in
+    k) echo "  ⊘ $d/ kept" ;;
     m)
-      echo "  → $d/ merge"
+      echo "  → $d/ merging"
       while IFS= read -r -d '' f; do
         t="./$d/${f#"$src"/}"
         if [[ -e "$t" ]]; then
@@ -61,17 +61,17 @@ for d in .ai .claude backlog; do
         fi
       done < <(find "$src" -type f -print0)
       ;;
-    r) rm -rf "./$d"; cp -R "$src" "./$d"; echo "  ✓ $d/ remplacé" ;;
+    r) rm -rf "./$d"; cp -R "$src" "./$d"; echo "  ✓ $d/ replaced" ;;
     b)
       ts=$(date +%Y%m%d-%H%M%S)
       mv "./$d" "./$d.bak-$ts"
       cp -R "$src" "./$d"
-      echo "  ✓ $d/ (ancien → $d.bak-$ts/)"
+      echo "  ✓ $d/ (old → $d.bak-$ts/)"
       ;;
   esac
 done
 
-# Fichiers racine (sauf install.sh + README.md + .gitignore)
+# Root files (except install.sh + README.md + .gitignore)
 echo ""
 while IFS= read -r -d '' f; do
   rel="${f#"$SRC"/}"
@@ -80,24 +80,60 @@ while IFS= read -r -d '' f; do
 
   if [[ ! -e "./$rel" ]]; then
     cp "$f" "./$rel"
-    echo "  ✓ $rel (nouveau)"
+    echo "  ✓ $rel (new)"
     continue
   fi
 
   echo ""
-  echo "⚠️  Fichier $rel existe : [k]eep / [r]eplace / [n]ew / [b]ackup"
-  case "$(ask "  Choix" "krnb")" in
-    k) echo "  ⊘ $rel gardé" ;;
-    r) cp "$f" "./$rel"; echo "  ✓ $rel remplacé" ;;
-    n) cp "$f" "./$rel.new"; echo "  ✓ $rel.new (à fusionner manuellement)" ;;
+  echo "⚠️  File $rel exists: [k]eep / [r]eplace / [n]ew / [b]ackup"
+  case "$(ask "  Choice" "krnb")" in
+    k) echo "  ⊘ $rel kept" ;;
+    r) cp "$f" "./$rel"; echo "  ✓ $rel replaced" ;;
+    n) cp "$f" "./$rel.new"; echo "  ✓ $rel.new (merge manually)" ;;
     b)
       ts=$(date +%Y%m%d-%H%M%S)
       mv "./$rel" "./$rel.bak-$ts"
       cp "$f" "./$rel"
-      echo "  ✓ $rel (ancien → $rel.bak-$ts)"
+      echo "  ✓ $rel (old → $rel.bak-$ts)"
       ;;
   esac
 done < <(find "$SRC" -maxdepth 1 -type f -print0)
 
+# ─── Language preference ───────────────────────────────────────────────────────
 echo ""
-echo "✅ Installation terminée. Tape /help dans Claude Code."
+printf "🌐 The template is in English. Keep it in English? [Y/n] " > /dev/tty 2>/dev/null
+IFS= read -r lang_choice < /dev/tty 2>/dev/null || lang_choice="Y"
+lang_choice="${lang_choice:-Y}"
+
+if [[ "$lang_choice" =~ ^[Nn]$ ]]; then
+  echo ""
+  echo "📋 Copy-paste this prompt to an AI (Claude, GPT…) to translate the template:"
+  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  cat <<'PROMPT'
+I just installed ai-coding-template. Translate all its content from English to [YOUR LANGUAGE].
+
+Translate these files (content only):
+
+  CLAUDE.md
+  backlog/ROADMAP.md
+  backlog/README.md
+  backlog/_template.md
+  .ai/conventions/code.md
+  .ai/decisions/_template.md
+  .ai/decisions/_index.md
+  .claude/agents/dev.md
+  .claude/agents/pm.md
+  install.sh  ← comments and echo strings only
+
+Rules — do NOT translate:
+  - File and folder names
+  - Frontmatter keys: id, title, type, priority, size, status, tags, created, updated
+  - Slash commands: /help, /refine, /dev
+  - Code blocks, file paths
+  - Technical terms: backlog, roadmap, ADR, YAGNI, spec, chore, spike
+PROMPT
+  echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+fi
+
+echo ""
+echo "✅ Installation complete. Type /help in Claude Code."

@@ -1,40 +1,41 @@
 # CLAUDE.md
 
-Méthodologie IA de ce projet. Reste léger : ne charge QUE ce qui sert la tâche en cours.
+AI methodology for this project. Stay lean: only load what the current task needs.
 
-## Règles d'or
+## Golden rules
 
-1. **Roadmap = source de vérité.** Toute modif de statut d'un ticket → mets à jour `backlog/ROADMAP.md` immédiatement.
-2. **Contexte minimal.** Ne lis QUE les fichiers utiles à la tâche en cours. Pas de lecture défensive.
-3. **Clarifier avant de stocker.** Avant d'écrire une nouvelle idée/tâche, pose des questions (objectif, scénario, succès).
+1. **Roadmap = source of truth.** Any ticket status change → update `ROADMAP.md` immediately.
+2. **Minimal context.** Only read files useful for the current task. No defensive reading.
+3. **Clarify before storing.** Before writing a new idea/task, ask questions (goal, scenario, success criteria).
+4. **NEVER read `.ai/DESIGN.md`** unless the user explicitly asks.
 
-## Où ranger quoi (routage)
+## Where to store what (routing)
 
-| Type d'info | Destination |
+| Type of info | Destination |
 |---|---|
-| Idée brute (non spécifiée) | `backlog/ideas/I-NNN-slug.md` |
-| Tâche spécifiée / en cours | `backlog/tasks/T-NNN-slug.md` |
-| Tâche terminée | `backlog/archive/T-NNN-slug.md` |
-| Décision archi/tech (ADR) | `.ai/decisions/NNNN-titre.md` (copier `_template.md`) — index : `.ai/decisions/_index.md` (charge uniquement si tu cherches un choix passé) |
-| Convention de code | `.ai/conventions/code.md` |
-| Vocabulaire métier | `.ai/glossary.md` (créer si besoin) |
-| État global du backlog | `backlog/ROADMAP.md` (toujours à jour) |
+| Raw idea (unspecified) | `backlog/ideas/I-NNN-slug.md` |
+| Specified / active task | `backlog/tasks/T-NNN-slug.md` |
+| Completed task | `backlog/archive/T-NNN-slug.md` |
+| Arch/tech decision (ADR) | `.ai/decisions/NNNN-title.md` (copy `_template.md`) |
+| Code convention | `.ai/conventions/code.md` |
+| Business vocabulary | `.ai/glossary.md` (create if needed) |
+| Global backlog state | `ROADMAP.md` (always up to date) |
 
-## Workflow ticket
+## Ticket workflow
 
 `idea → spec → dev → test → review → done`
 
-Chaque transition de statut **doit** mettre à jour `ROADMAP.md`.
+Every status transition **must** update `ROADMAP.md`.
 
 ## Commands
 
-- `/help` — aide
-- `/refine <id?>` — créer une nouvelle idée (sans ID) ou affiner un ticket existant (avec ID)
-- `/dev <id>` — exécuter un ticket existant
+- `/help` — help
+- `/refine <id?>` — create a new idea (no ID) or refine an existing ticket (with ID)
+- `/dev <id>` — execute an existing ticket
 
-Le reste se fait en langage naturel (ex: "fais-moi le point" → lis `backlog/ROADMAP.md` et résume).
+Everything else in natural language (e.g. "give me a status" → read `ROADMAP.md` and summarize).
 
 ## Sub-agents
 
-- `pm` — clarification / priorisation / roadmap / archivage (invoqué via `/refine`)
-- `dev` — code / test / debug (invoqué via `/dev`)
+- `pm` — clarification / prioritization / roadmap / archiving (invoked via `/refine`)
+- `dev` — code / test / debug (invoked via `/dev`)

@@ -1,8 +1,8 @@
-# Index des décisions (ADRs)
+# Decision index (ADRs)
 
-> Lis ce fichier UNIQUEMENT si tu dois retrouver ou vérifier un choix architectural passé.
-> Pour créer un nouvel ADR : `cp .ai/decisions/_template.md .ai/decisions/NNNN-titre.md`
+> Read this file ONLY if you need to find or verify a past architectural decision.
+> To create a new ADR: `cp .ai/decisions/_template.md .ai/decisions/NNNN-title.md`
 
-| Fichier | Décision (résumé) | Statut |
+| File | Decision (summary) | Status |
 |---|---|---|
-| _(aucune décision encore)_ | — | — |
+| _(no decisions yet)_ | — | — |

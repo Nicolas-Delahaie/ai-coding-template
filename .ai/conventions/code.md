@@ -1,66 +1,66 @@
-# Conventions de code
+# Code conventions
 
-Conventions techniques que les agents (et le dev) doivent respecter. Flutter/Dart par défaut.
-Adapter à votre stack si différent.
+Technical conventions that agents (and the dev) must follow. Flutter/Dart by default.
+Adapt to your stack if different.
 
 ---
 
-## Style Dart / Flutter
+## Dart / Flutter style
 
-- **Lint** : respecter `flutter_lints` (présent par défaut dans tout projet Flutter récent). Activer aussi `prefer_single_quotes`.
-- **Formatage** : `dart format .` avant chaque commit (largeur 80).
-- **Naming** :
-  - Fichiers : `snake_case.dart`
-  - Classes / enums / typedefs : `PascalCase`
-  - Méthodes, variables, paramètres : `camelCase`
-  - Constantes : `lowerCamelCase` (pas `SCREAMING_SNAKE_CASE` en Dart)
-  - Private : préfixe `_` (privé au fichier)
-- **Imports** :
+- **Lint**: follow `flutter_lints` (present by default in any recent Flutter project). Also enable `prefer_single_quotes`.
+- **Formatting**: `dart format .` before each commit (width 80).
+- **Naming**:
+  - Files: `snake_case.dart`
+  - Classes / enums / typedefs: `PascalCase`
+  - Methods, variables, parameters: `camelCase`
+  - Constants: `lowerCamelCase` (not `SCREAMING_SNAKE_CASE` in Dart)
+  - Private: `_` prefix (file-private)
+- **Imports**:
   1. `dart:` core
-  2. `package:` (Flutter + tiers)
-  3. `package:<own_app>/` (interne)
-  4. Relatifs (`./`, `../`)
-  Bloc vides séparés. `dart fix` peut aider.
-- **Async** : préférer `async/await` à `.then()`. Toujours typer le retour (`Future<T>`).
-- **Null safety** : pas de `!` sauf si on prouve qu'on ne peut pas l'éviter (et un commentaire dit pourquoi).
-- **State management** : voir l'ADR correspondant si décidé. Sinon, demander avant d'introduire un package.
-- **Widgets** :
-  - Préférer `const` partout où possible.
-  - Découper en sous-widgets dès que `build` dépasse ~50 lignes ou qu'un bloc est logiquement isolé.
-  - Pas de logique métier dans les widgets : déléguer à un controller / notifier / service.
+  2. `package:` (Flutter + third-party)
+  3. `package:<own_app>/` (internal)
+  4. Relative (`./`, `../`)
+  Separated by blank lines. `dart fix` can help.
+- **Async**: prefer `async/await` over `.then()`. Always type the return value (`Future<T>`).
+- **Null safety**: no `!` unless we can prove it can't be avoided (and a comment explains why).
+- **State management**: see the corresponding ADR if decided. Otherwise, ask before introducing a package.
+- **Widgets**:
+  - Prefer `const` everywhere possible.
+  - Split into sub-widgets when `build` exceeds ~50 lines or a block is logically isolated.
+  - No business logic in widgets: delegate to a controller / notifier / service.
 
-## Architecture du code applicatif
+## Application code architecture
 
-Le template **n'impose rien** sur la structure de `lib/`. Le user choisit feature-first, layered, ou autre selon le projet. Si un choix est fait, le consigner dans un ADR (`.ai/decisions/`).
+The template **imposes nothing** on the `lib/` structure. The user chooses feature-first, layered, or other based on the project. If a choice is made, record it in an ADR (`.ai/decisions/`).
 
 ## Tests
 
-- **Localisation** : `test/` à la racine, miroir de `lib/`.
-- **Types** :
-  - **Unit** : logique pure, services, repositories (mockent les dépendances I/O).
-  - **Widget** : un widget isolé avec `WidgetTester`.
-  - **Integration** : flux end-to-end avec `integration_test/`.
-- **Nommage des tests** : `<thing_to_test>_test.dart`.
-- **Convention de description** : `should <expected behavior> when <condition>`.
-- **Couverture** : pas d'objectif chiffré strict. Couvrir ce qui est non-trivial et qui casserait silencieusement.
-- **Avant de passer un ticket en `review`** : tous les tests doivent passer (`flutter test`).
+- **Location**: `test/` at root, mirroring `lib/`.
+- **Types**:
+  - **Unit**: pure logic, services, repositories (mock I/O dependencies).
+  - **Widget**: an isolated widget with `WidgetTester`.
+  - **Integration**: end-to-end flow with `integration_test/`.
+- **Test naming**: `<thing_to_test>_test.dart`.
+- **Description convention**: `should <expected behavior> when <condition>`.
+- **Coverage**: no strict numeric goal. Cover what is non-trivial and would break silently.
+- **Before moving a ticket to `review`**: all tests must pass (`flutter test`).
 
 ## Git
 
-- **Branches** : travail direct sur `main` accepté en solo. Branche `feature/<slug>` si on veut isoler un chantier non-trivial.
-- **Commits** : format `<type>(<scope>): <message>` inspiré de Conventional Commits.
-  - Types : `feat`, `fix`, `chore`, `refactor`, `test`, `docs`, `adr`
-  - Exemples :
-    - `feat(auth): ajout login email/password`
-    - `fix(scroll): éviter le crash sur liste vide`
-    - `adr: 0003 choix Riverpod plutôt que Bloc`
-  - Référencer le ticket : `feat(auth): T-042 ajout login...` (optionnel mais pratique).
-- **Pas de force-push** sur `main`. Pas de `git reset --hard` sans confirmation.
-- **Hooks** : ne pas bypasser (`--no-verify`) sauf urgence documentée.
+- **Branches**: working directly on `main` is accepted in solo. `feature/<slug>` branch if isolating a non-trivial workstream.
+- **Commits**: format `<type>(<scope>): <message>` inspired by Conventional Commits.
+  - Types: `feat`, `fix`, `chore`, `refactor`, `test`, `docs`, `adr`
+  - Examples:
+    - `feat(auth): add email/password login`
+    - `fix(scroll): prevent crash on empty list`
+    - `adr: 0003 choose Riverpod over Bloc`
+  - Reference the ticket: `feat(auth): T-042 add login...` (optional but useful).
+- **No force-push** on `main`. No `git reset --hard` without confirmation.
+- **Hooks**: don't bypass (`--no-verify`) except in documented emergencies.
 
-## Workflow agent (rappel rapide)
+## Agent workflow (quick reminder)
 
-- Toujours respecter la règle d'or : modif d'un ticket ⇒ `ROADMAP.md` à jour.
-- Ne pas sur-engineer : YAGNI. Pas de feature, abstraction ou option de config non demandée.
-- Pas de commentaires inutiles : code lisible > commentaires redondants.
-- Demander confirmation avant les actions risquées (suppression, refactor large, install d'un package).
+- Always follow the golden rule: ticket change ⇒ `ROADMAP.md` up to date.
+- Don't over-engineer: YAGNI. No unrequested feature, abstraction, or config option.
+- No unnecessary comments: readable code > redundant comments.
+- Ask for confirmation before risky actions (deletion, large refactor, package install).
