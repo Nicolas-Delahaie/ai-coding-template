@@ -35,20 +35,13 @@ read -r lang_choice
 if [[ "$lang_choice" =~ ^[Nn]$ ]]; then
   echo "📋 Paste this prompt into an AI to translate the template:"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+  echo "Translate all content from English to [YOUR LANGUAGE]."
+  echo ""
+  echo "Folders/files to translate (content only):"
+  for item in "${SYNC_ITEMS[@]}"; do
+    echo "  $item"
+  done
   cat <<'PROMPT'
-Translate all content of ai-coding-template from English to [YOUR LANGUAGE].
-
-Files to translate (content only):
-  CLAUDE.md
-  backlog/ROADMAP.md
-  backlog/README.md
-  backlog/_template.md
-  .ai/conventions/code.md
-  .ai/decisions/_template.md
-  .ai/decisions/_index.md
-  .claude/agents/dev.md
-  .claude/agents/pm.md
-  install.sh  ← comments and echo strings only
 
 Rules — do NOT translate:
   - File and folder names
