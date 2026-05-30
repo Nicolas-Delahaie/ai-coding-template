@@ -18,16 +18,24 @@ echo "📦 ai-coding-template → $(pwd)"
 curl -fsSL "https://github.com/Nicolas-Delahaie/ai-coding-template/archive/$BRANCH.tar.gz" | tar xz -C "$TMP"
 SRC="$TMP/$(ls "$TMP")"
 ts=$(date +%Y%m%d-%H%M%S)
+backed_up=()
 
 for item in "${SYNC_ITEMS[@]}"; do
   [[ -e "$SRC/$item" ]] || continue
   if [[ -e "./$item" ]]; then
     mv "./$item" "./$item.bak-$ts"
     echo "  ↩ $item → $item.bak-$ts"
+    backed_up+=("$item.bak-$ts")
   fi
   cp -R "$SRC/$item" "./$item"
   echo "  ✓ $item"
 done
+
+if [[ ${#backed_up[@]} -gt 0 ]]; then
+  echo ""
+  echo "⚠️  Backed-up items — manually merge them into the new versions:"
+  for f in "${backed_up[@]}"; do echo "    $f"; done
+fi
 
 printf "\n🌐 Keep the template in English? [Y/n] "
 read -r lang_choice
