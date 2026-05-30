@@ -60,7 +60,7 @@ The template **imposes nothing** on the `lib/` structure. The user chooses featu
 
 ## Agent workflow (quick reminder)
 
-- Always follow the golden rule: ticket change ⇒ `ROADMAP.md` up to date.
+- Always follow the golden rule: ticket change ⇒ `backlog/ROADMAP.md` up to date.
 - Don't over-engineer: YAGNI. No unrequested feature, abstraction, or config option.
 - No unnecessary comments: readable code > redundant comments.
 - Ask for confirmation before risky actions (deletion, large refactor, package install).

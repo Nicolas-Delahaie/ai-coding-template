@@ -49,14 +49,14 @@ ideas/I-NNN-slug.md     ─(promotion)─►   tasks/T-NNN-slug.md   ─(archivi
 - **Internal transitions (`spec → dev → test → review`)**: edit `status:` frontmatter only.
 - **Archiving `review → done`**: `mv` to `archive/`.
 
-**Golden rule**: every status transition → **immediate update** of `ROADMAP.md`.
+**Golden rule**: every status transition → **immediate update** of `backlog/ROADMAP.md`.
 
 ## Creating a new ticket
 
 ```bash
 cp backlog/_template.md backlog/ideas/I-<NNN>-<slug>.md
 # Then edit the copied file: id, title, type, priority, size, dates, content.
-# Then update ROADMAP.md.
+# Then update backlog/ROADMAP.md.
 ```
 
 In practice, use `/refine` (the PM agent handles all of this).

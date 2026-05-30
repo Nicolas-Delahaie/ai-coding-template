@@ -28,7 +28,7 @@ Three slash commands cover the full workflow:
 | `/dev <id>` | Implement a ticket (invokes Dev agent) |
 | `/help` | Discover available commands |
 
-Everything else in plain language — the agent reads `ROADMAP.md` and knows where things stand.
+Everything else in plain language — the agent reads `backlog/ROADMAP.md` and knows where things stand.
 
 ## Ticket lifecycle
 
@@ -36,7 +36,7 @@ Everything else in plain language — the agent reads `ROADMAP.md` and knows whe
 idea → spec → dev → test → review → done
 ```
 
-Each ticket is a single markdown file that travels between `ideas/` → `tasks/` → `archive/`. One `mv`, no duplication. `ROADMAP.md` stays in sync at every transition.
+Each ticket is a single markdown file that travels between `ideas/` → `tasks/` → `archive/`. One `mv`, no duplication. `backlog/ROADMAP.md` stays in sync at every transition.
 
 ---
 

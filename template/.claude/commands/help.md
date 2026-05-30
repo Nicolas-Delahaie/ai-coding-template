@@ -16,7 +16,7 @@ COMMANDS
                      Invokes the `dev` sub-agent.
 
 NATURAL LANGUAGE (no command needed)
-  "give me a status"     → agent reads ROADMAP.md and summarizes
+  "give me a status"     → agent reads backlog/ROADMAP.md and summarizes
   "I have an idea: X"    → equivalent to /refine "X"
   "there's a bug: X"     → equivalent to /refine "X" (PM will create a fix ticket)
 
@@ -28,7 +28,7 @@ TICKET WORKFLOW
     backlog/archive/T-NNN-slug.md (done)
 
 GOLDEN RULE
-  Any status change → ROADMAP.md updated immediately.
+  Any status change → backlog/ROADMAP.md updated immediately.
 
 SUB-AGENTS (invoked automatically by commands)
   pm   — clarification / prioritization / roadmap / archiving

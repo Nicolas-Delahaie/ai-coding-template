@@ -4,10 +4,11 @@ AI methodology for this project. Stay lean: only load what the current task need
 
 ## Golden rules
 
-1. **Roadmap = source of truth.** Any ticket status change → update `ROADMAP.md` immediately.
+1. **Roadmap = source of truth.** Any ticket status change → update `backlog/ROADMAP.md` immediately.
 2. **Minimal context.** Only read files useful for the current task. No defensive reading.
 3. **Clarify before storing.** Before writing a new idea/task, ask questions (goal, scenario, success criteria).
 4. **NEVER read `.ai/DESIGN.md`** unless the user explicitly asks.
+5. **Self-improve.** If an instruction feels wrong or missing for the situation, say so and propose a fix directly in this file.
 
 ## Where to store what (routing)
 
@@ -19,13 +20,13 @@ AI methodology for this project. Stay lean: only load what the current task need
 | Arch/tech decision (ADR) | `.ai/decisions/NNNN-title.md` (copy `_template.md`) |
 | Code convention | `.ai/conventions/code.md` |
 | Business vocabulary | `.ai/glossary.md` (create if needed) |
-| Global backlog state | `ROADMAP.md` (always up to date) |
+| Global backlog state | `backlog/ROADMAP.md` (always up to date) |
 
 ## Ticket workflow
 
 `idea → spec → dev → test → review → done`
 
-Every status transition **must** update `ROADMAP.md`.
+Every status transition **must** update `backlog/ROADMAP.md`.
 
 ## Commands
 
@@ -33,7 +34,7 @@ Every status transition **must** update `ROADMAP.md`.
 - `/refine <id?>` — create a new idea (no ID) or refine an existing ticket (with ID)
 - `/dev <id>` — execute an existing ticket
 
-Everything else in natural language (e.g. "give me a status" → read `ROADMAP.md` and summarize).
+Everything else in natural language (e.g. "give me a status" → read `backlog/ROADMAP.md` and summarize).
 
 ## Sub-agents
 
