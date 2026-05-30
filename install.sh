@@ -7,8 +7,6 @@ set -euo pipefail
 BRANCH="main"
 
 
-exec < /dev/tty
-
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
 
@@ -42,7 +40,7 @@ if [[ ${#backed_up[@]} -gt 0 ]]; then
 fi
 
 printf "\n🌐 Keep the template in English? [Y/n] "
-read -r lang_choice
+read -r lang_choice < /dev/tty
 
 if [[ "$lang_choice" =~ ^[Nn]$ ]]; then
   printf "🌐 Target language: "
