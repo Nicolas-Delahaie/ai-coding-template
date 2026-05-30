@@ -45,9 +45,12 @@ printf "\n🌐 Keep the template in English? [Y/n] "
 read -r lang_choice
 
 if [[ "$lang_choice" =~ ^[Nn]$ ]]; then
+  printf "🌐 Target language: "
+  read -r target_lang < /dev/tty
+
   echo "📋 Paste this prompt into an AI to translate the template:"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-  echo "Translate all content from English to [YOUR LANGUAGE]."
+  echo "Translate all content from English to ${target_lang}."
   echo ""
   echo "Folders/files to translate (content only):"
   for item in "${synced[@]}"; do
