@@ -12,6 +12,12 @@ trap 'rm -rf "$TMP"' EXIT
 
 echo "📦 ai-coding-template → $(pwd)"
 
+if [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
+  printf "⚠️  Uncommitted changes detected — the install adds many files. Continue? [y/N] "
+  read -r confirm < /dev/tty
+  [[ "$confirm" =~ ^[Yy]$ ]] || { echo "Aborted."; exit 1; }
+fi
+
 curl -fsSL "https://github.com/Nicolas-Delahaie/ai-coding-template/archive/$BRANCH.tar.gz" | tar xz -C "$TMP"
 SRC="$TMP/$(ls "$TMP")/template"
 ts=$(date +%Y%m%d-%H%M%S)
