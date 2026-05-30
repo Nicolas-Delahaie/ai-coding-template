@@ -5,7 +5,6 @@
 set -euo pipefail
 
 BRANCH="main"
-SYNC_ITEMS=(.ai .claude backlog CLAUDE.md)
 
 
 exec < /dev/tty
@@ -16,19 +15,24 @@ trap 'rm -rf "$TMP"' EXIT
 echo "📦 ai-coding-template → $(pwd)"
 
 curl -fsSL "https://github.com/Nicolas-Delahaie/ai-coding-template/archive/$BRANCH.tar.gz" | tar xz -C "$TMP"
-SRC="$TMP/$(ls "$TMP")"
+SRC="$TMP/$(ls "$TMP")/template"
 ts=$(date +%Y%m%d-%H%M%S)
 backed_up=()
+synced=()
 
-for item in "${SYNC_ITEMS[@]}"; do
-  [[ -e "$SRC/$item" ]] || continue
+# Copy every item shipped in template/ into the project root.
+shopt -s dotglob nullglob
+for path in "$SRC"/*; do
+  item=$(basename "$path")
+  [[ "$item" == ".DS_Store" ]] && continue
   if [[ -e "./$item" ]]; then
     mv "./$item" "./$item.bak-$ts"
     echo "  ↩ $item → $item.bak-$ts"
     backed_up+=("$item.bak-$ts")
   fi
-  cp -R "$SRC/$item" "./$item"
+  cp -R "$path" "./$item"
   echo "  ✓ $item"
+  synced+=("$item")
 done
 
 if [[ ${#backed_up[@]} -gt 0 ]]; then
@@ -46,7 +50,7 @@ if [[ "$lang_choice" =~ ^[Nn]$ ]]; then
   echo "Translate all content from English to [YOUR LANGUAGE]."
   echo ""
   echo "Folders/files to translate (content only):"
-  for item in "${SYNC_ITEMS[@]}"; do
+  for item in "${synced[@]}"; do
     echo "  $item"
   done
   cat <<'PROMPT'

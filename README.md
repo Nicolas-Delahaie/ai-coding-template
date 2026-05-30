@@ -10,11 +10,14 @@ Not application code. Not opinions on your stack. Just the structure that keeps 
 
 ## What's inside
 
+Everything that ships lives under [`template/`](template/) — copied as-is into your project root by the installer:
+
 ```
-CLAUDE.md          ← ~40 lines. The only always-loaded context.
-.ai/               ← ADRs, conventions, glossary (loaded on demand)
-backlog/           ← ideas/ tasks/ archive/ + ROADMAP.md (source of truth)
-.claude/           ← slash commands + sub-agents (PM & Dev)
+template/
+  CLAUDE.md        ← ~40 lines. The only always-loaded context.
+  .ai/             ← ADRs, conventions, glossary (loaded on demand)
+  backlog/         ← ideas/ tasks/ archive/ + ROADMAP.md (source of truth)
+  .claude/         ← slash commands + sub-agents (PM & Dev)
 ```
 
 Three slash commands cover the full workflow:
@@ -45,16 +48,16 @@ From the root of your target project:
 curl -fsSL https://raw.githubusercontent.com/Nicolas-Delahaie/ai-coding-template/main/install.sh | bash
 ```
 
-The script downloads the template and syncs `.ai/`, `.claude/`, `backlog/`, and `CLAUDE.md`. Existing items are automatically backed up as `item.bak-TIMESTAMP` — **manually merge** any backed-up files into the new versions afterward. Then it asks once whether to keep the template in English or get a translation prompt. No machine install required — just curl and bash.
+The script downloads the template and copies everything under `template/` into your project root. Existing items are automatically backed up as `item.bak-TIMESTAMP` — **manually merge** any backed-up files into the new versions afterward. Then it asks once whether to keep the template in English or get a translation prompt. No machine install required — just curl and bash.
 
-> **Unix only** (macOS / Linux). On Windows or if you prefer: manually merge the folders `.ai/`, `.claude/`, `backlog/` and the file `CLAUDE.md` from this repo into your project root.
+> **Unix only** (macOS / Linux). On Windows or if you prefer: manually copy the contents of [`template/`](template/) from this repo into your project root.
 
 ---
 
 ## Going further
 
-- [`CLAUDE.md`](CLAUDE.md) — the full methodology (~40 lines)
-- [`backlog/README.md`](backlog/README.md) — ticket workflow details
+- [`template/CLAUDE.md`](template/CLAUDE.md) — the full methodology (~40 lines)
+- [`template/backlog/README.md`](template/backlog/README.md) — ticket workflow details
 - In Claude Code, type `/help`
 
 ---
