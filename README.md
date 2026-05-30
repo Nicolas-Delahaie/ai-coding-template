@@ -10,7 +10,7 @@ Not application code. Not opinions on your stack. Just the structure that keeps 
 
 ## What's inside
 
-Everything that ships lives under [`template/`](template/) — copied as-is into your project root by the installer:
+Everything that ships lives under [`template/`](template/) — copied as-is into your project root by `apply.sh`:
 
 ```
 template/
@@ -45,7 +45,7 @@ Each ticket is a single markdown file that travels between `ideas/` → `tasks/`
 From the root of your target project:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Nicolas-Delahaie/ai-coding-template/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/Nicolas-Delahaie/ai-coding-template/main/apply.sh | bash
 ```
 
 The script downloads the template and copies everything under `template/` into your project root. Existing items are automatically backed up as `item.bak-TIMESTAMP` — **manually merge** any backed-up files into the new versions afterward. Then it asks once whether to keep the template in English or get a translation prompt. No machine install required — just curl and bash.
@@ -90,6 +90,6 @@ An agent with **minimal active context**. `CLAUDE.md` stays ~40 lines. Sub-agent
 | 14 | Meta-files prefixed `_` (`_template.md`, `_index.md`) | Visually distinct from real numbered files, sort to top in `ls` |
 | 15 | Physical ticket and ADR templates: `_template.md` next to their folder | Copied via `cp` then renamed/edited. No inline format in READMEs (token economy). |
 | 16 | ADR index: `.ai/decisions/_index.md` | One line per ADR. Loaded only when the agent needs to find a past decision. |
-| 17 | Distribution via curlable `install.sh` | Zero machine install. `degit`/`copier`/`npx` rejected (require install or blindly overwrite) |
-| 18 | `README.md` and `.gitignore` not copied by install | The target project owns both. We don't overwrite them. |
+| 17 | Distribution via curlable `apply.sh` | Zero machine install. `degit`/`copier`/`npx` rejected (require install or blindly overwrite) |
+| 18 | `README.md` and `.gitignore` not copied by `apply.sh` | The target project owns both. We don't overwrite them. |
 | 19 | Minimalist README, no overlap with `CLAUDE.md` | README = human presentation. Methodology = `CLAUDE.md`. Two sources means drift. |

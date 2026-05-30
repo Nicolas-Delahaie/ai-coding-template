@@ -1,6 +1,6 @@
 #!/bin/bash
 # ai-coding-template installer
-# Usage: curl -fsSL https://raw.githubusercontent.com/Nicolas-Delahaie/ai-coding-template/main/install.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/Nicolas-Delahaie/ai-coding-template/main/apply.sh | bash
 
 set -euo pipefail
 
