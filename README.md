@@ -8,6 +8,18 @@ Not application code. Not opinions on your stack. Just the structure that keeps 
 
 ---
 
+## Approach — feature-based, agile-inspired
+
+The methodology is **feature-based**: the unit of work is the *feature*, not a technical layer or a project phase. Each ticket is a lightweight user story — a *usage scenario* plus *acceptance criteria* — that delivers one increment of value (`feature | fix | chore | spike`).
+
+It draws on **agile principles** without the ceremony: work flows continuously through `idea → spec → dev → test → review → done`, `backlog/ROADMAP.md` acts as the board, and you ship in small increments instead of planning everything upfront. It's Kanban in spirit — scaled down for a solo developer working with an AI agent.
+
+Tickets **live in the git repo**, as plain markdown files alongside the code. A ticket travels through `ideas/ → tasks/ → archive/` and is committed with the changes it drives: spec and implementation evolve in the same history. The ticket lives with its modifications — you can always trace *why* a piece of code exists back to the feature that produced it.
+
+Why it fits AI-assisted solo work: one feature in flight means the agent reasons about one well-scoped problem at a time (its acceptance criteria), and the ticket file *is* the shared context — no heavy upfront plan to keep in the agent's head.
+
+---
+
 ## What's inside
 
 Everything that ships lives under [`template/`](template/) — copied as-is into your project root by `apply.sh`:
@@ -68,7 +80,7 @@ The script downloads the template and copies everything under `template/` into y
 
 ### Core principle
 
-An agent with **minimal active context**. `CLAUDE.md` stays ~40 lines. Sub-agents (PM, Dev) carry their own detailed prompts and are only loaded when explicitly invoked. The methodology scales with the project without the agent getting heavier.
+A **feature-based, agile-inspired** workflow (see [Approach](#approach--feature-based-agile-inspired)) running on an agent with **minimal active context**. `CLAUDE.md` stays ~40 lines. Sub-agents (PM, Dev) carry their own detailed prompts and are only loaded when explicitly invoked. The methodology scales with the project without the agent getting heavier.
 
 ### Key choices
 
