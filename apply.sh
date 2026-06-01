@@ -5,12 +5,16 @@
 set -euo pipefail
 
 BRANCH="main"
-
+REPO="Nicolas-Delahaie/ai-coding-template"
 
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
 
 echo "📦 ai-coding-template → $(pwd)"
+
+COMMIT=$(curl -fsSL "https://api.github.com/repos/$REPO/git/ref/heads/$BRANCH" \
+  | grep '"sha"' | head -1 | sed 's/.*"sha": "\([^"]*\)".*/\1/')
+[[ -z "$COMMIT" ]] && { echo "❌ Could not resolve template commit hash."; exit 1; }
 
 if [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
   printf "⚠️  Uncommitted changes detected — the install adds many files. Continue? [y/N] "
@@ -18,7 +22,7 @@ if [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
   [[ "$confirm" =~ ^[Yy]$ ]] || { echo "Aborted."; exit 1; }
 fi
 
-curl -fsSL "https://github.com/Nicolas-Delahaie/ai-coding-template/archive/$BRANCH.tar.gz" | tar xz -C "$TMP"
+curl -fsSL "https://github.com/$REPO/archive/$BRANCH.tar.gz" | tar xz -C "$TMP"
 SRC="$TMP/$(ls "$TMP")/template"
 ts=$(date +%Y%m%d-%H%M%S)
 backed_up=()
@@ -70,6 +74,12 @@ Rules — do NOT translate:
   - Technical terms: backlog, roadmap, ADR, YAGNI, spec, chore, spike
 PROMPT
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+fi
+
+if [[ -n "$COMMIT" ]]; then
+  echo "💡 Suggested commit:"
+  echo "   git commit -m \"chore: apply ai-coding-template@${COMMIT:0:7}\""
+  echo ""
 fi
 
 echo "✅ Done. Type /help in Claude Code."
