@@ -1,10 +1,10 @@
 ---
 id: T-NNN
 title: <Short precise title>
-type: feature       # feature | fix | chore | spike
-priority: now       # now | next | later
-size: M             # XS | S | M | L
-status: idea        # idea | spec | dev | test | review | done
+type: feature # feature | fix | chore | spike
+priority: now # now | next | later
+size: M # XS | S | M | L
+status: idea # idea | spec | dev | test | review | done
 tags: []
 created: YYYY-MM-DD
 updated: YYYY-MM-DD

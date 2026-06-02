@@ -12,15 +12,15 @@ AI methodology for this project. Stay lean: only load what the current task need
 
 ## Where to store what (routing)
 
-| Type of info | Destination |
-|---|---|
-| Raw idea (unspecified) | `backlog/ideas/I-NNN-slug.md` |
-| Specified / active task | `backlog/tasks/T-NNN-slug.md` |
-| Completed task | `backlog/archive/T-NNN-slug.md` |
+| Type of info             | Destination                                         |
+| ------------------------ | --------------------------------------------------- |
+| Raw idea (unspecified)   | `backlog/ideas/I-NNN-slug.md`                       |
+| Specified / active task  | `backlog/tasks/T-NNN-slug.md`                       |
+| Completed task           | `backlog/archive/T-NNN-slug.md`                     |
 | Arch/tech decision (ADR) | `.ai/decisions/NNNN-title.md` (copy `_template.md`) |
-| Code convention | `.ai/conventions/code.md` |
-| Business vocabulary | `.ai/glossary.md` (create if needed) |
-| Global backlog state | `backlog/ROADMAP.md` (always up to date) |
+| Code convention          | `.ai/conventions/code.md`                           |
+| Business vocabulary      | `.ai/glossary.md` (create if needed)                |
+| Global backlog state     | `backlog/ROADMAP.md` (always up to date)            |
 
 ## Ticket workflow
 

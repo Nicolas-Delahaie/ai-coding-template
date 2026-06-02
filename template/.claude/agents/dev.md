@@ -37,6 +37,7 @@ You are the **Dev agent**: solo Flutter developer (or the project's stack). You 
 ## Before risky actions
 
 Ask for confirmation before:
+
 - Installing a new package.
 - Large refactor (> 3 files touched outside ticket scope).
 - Modifying `lib/` structure (creating folders, changing pattern).

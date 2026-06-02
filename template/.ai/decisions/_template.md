@@ -12,14 +12,17 @@ What problem we're solving. What forces are at play (technical, business, constr
 ## Options considered
 
 ### Option A — <name>
+
 - Pros: ...
 - Cons: ...
 
 ### Option B — <name>
+
 - Pros: ...
 - Cons: ...
 
 ### Option C — <name> (optional)
+
 - Pros: ...
 - Cons: ...
 
@@ -30,15 +33,18 @@ We choose **Option X** because ...
 ## Consequences
 
 ### Positive
+
 - ...
 
 ### Negative
+
 - ...
 
 ### Neutral (to watch)
+
 - ...
 
 ## References
 
-- Related tickets: T-NNN, T-NNN
+- Related tickets: NNN, NNN
 - External links: ...

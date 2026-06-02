@@ -5,26 +5,26 @@
 
 ## In progress (`dev` / `test` / `review`)
 
-| ID | Title | Type | Prio | Size | Status | Updated |
-|----|-------|------|------|------|--------|---------|
-| — | — | — | — | — | — | — |
+| ID  | Title | Type | Prio | Size | Status | Updated |
+| --- | ----- | ---- | ---- | ---- | ------ | ------- |
+| —   | —     | —    | —    | —    | —      | —       |
 
 ## Ready to tackle (`spec`)
 
-| ID | Title | Type | Prio | Size | Updated |
-|----|-------|------|------|------|---------|
-| — | — | — | — | — | — |
+| ID  | Title | Type | Prio | Size | Updated |
+| --- | ----- | ---- | ---- | ---- | ------- |
+| —   | —     | —    | —    | —    | —       |
 
 ## To explore (`idea`)
 
-| ID | Title | Prio | Updated |
-|----|-------|------|---------|
-| — | — | — | — |
+| ID  | Title | Prio | Updated |
+| --- | ----- | ---- | ------- |
+| —   | —     | —    | —       |
 
 ## Recent archive (last 5 `done`)
 
-| ID | Title | Done date |
-|----|-------|-----------|
-| — | — | — |
+| ID  | Title | Done date |
+| --- | ----- | --------- |
+| —   | —     | —         |
 
 > Full history: `ls backlog/archive/`

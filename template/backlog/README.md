@@ -29,14 +29,14 @@ Examples: `I-007-collaborative-mode.md`, `T-042-email-password-auth.md`.
 idea → spec → dev → test → review → done
 ```
 
-| Status | Meaning | Location |
-|---|---|---|
-| `idea` | Draft, not yet explored | `ideas/I-NNN-*.md` |
-| `spec` | Explored, AC defined, ready to tackle | `tasks/T-NNN-*.md` |
-| `dev` | Being implemented | `tasks/T-NNN-*.md` |
-| `test` | Code written, tests being written/run | `tasks/T-NNN-*.md` |
-| `review` | Tests green, awaiting human validation | `tasks/T-NNN-*.md` |
-| `done` | Validated and archived | `archive/T-NNN-*.md` |
+| Status   | Meaning                                | Location             |
+| -------- | -------------------------------------- | -------------------- |
+| `idea`   | Draft, not yet explored                | `ideas/I-NNN-*.md`   |
+| `spec`   | Explored, AC defined, ready to tackle  | `tasks/T-NNN-*.md`   |
+| `dev`    | Being implemented                      | `tasks/T-NNN-*.md`   |
+| `test`   | Code written, tests being written/run  | `tasks/T-NNN-*.md`   |
+| `review` | Tests green, awaiting human validation | `tasks/T-NNN-*.md`   |
+| `done`   | Validated and archived                 | `archive/T-NNN-*.md` |
 
 ## Transitions (the file travels)
 
@@ -66,5 +66,6 @@ In practice, use `/refine` (the PM agent handles all of this).
 A list of verifiable checkboxes. Must answer: "how do I know this is done?".
 
 Examples:
+
 - ✅ `[ ] User can log in with a valid email + password`
 - ❌ `[ ] Authentication works` (too vague)

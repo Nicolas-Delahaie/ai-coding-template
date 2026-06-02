@@ -10,6 +10,7 @@ Analyze the argument and delegate to the `pm` sub-agent:
 **Case 1 — the argument is empty or doesn't look like an ID (`I-NNN` or `T-NNN`)**: new idea to create.
 
 Invoke the `pm` sub-agent via the Agent tool with this context:
+
 > Mission: create a new idea from the description "$ARGUMENTS" (may be empty).
 >
 > 1. Ask the user 3-5 clarification questions BEFORE writing anything (goal, usage scenario, success criterion, out-of-scope, possible dependencies).
@@ -23,6 +24,7 @@ Invoke the `pm` sub-agent via the Agent tool with this context:
 **Case 2 — the argument looks like an ID (`I-NNN` or `T-NNN`)**: existing ticket to refine.
 
 Invoke the `pm` sub-agent via the Agent tool with this context:
+
 > Mission: refine the existing ticket `$ARGUMENTS`.
 >
 > 1. Read `backlog/ideas/$ARGUMENTS-*.md` or `backlog/tasks/$ARGUMENTS-*.md`.
