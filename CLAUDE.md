@@ -1,31 +1,31 @@
-# CLAUDE.md — ai-coding-template (repo de développement)
+# CLAUDE.md — ai-coding-template (dev repo)
 
-Ce dépôt **produit** un template de méthodologie IA. Il ne l'utilise pas.
+This repo **produces** an AI methodology template. It does not use it.
 
-## Distinction clé
+## Key distinction
 
-- **`templates/`** — les templates distribués. Un sous-dossier par langue (`english/`, `french/`…). Le contenu du dossier langue choisi est copié tel quel dans les projets cibles par `apply.sh`. C'est le produit.
-- **Racine** — la plomberie du dépôt, qui n'est PAS distribuée : `README.md`, `apply.sh`, `.gitignore`, ce `CLAUDE.md`.
-- **`.claude/`** à la racine — commandes Claude Code pour ce dépôt de dev uniquement (ex. `/sync-langs`). Ce dossier n'est PAS distribué et n'a rien à voir avec `templates/{lang}/.claude/` qui, lui, est distribué.
+- **`templates/`** — the distributed templates. One subfolder per language (`english/`, `french/`…). The content of the chosen language folder is copied as-is into target projects by `apply.sh`. This is the product.
+- **Root** — the repo plumbing, NOT distributed: `README.md`, `apply.sh`, `.gitignore`, this `CLAUDE.md`.
+- **`.claude/`** at root — Claude Code commands for this dev repo only (e.g. `/sync-langs`). NOT distributed — unrelated to `templates/{lang}/.claude/` which is.
 
-## Règle d'or
+## Golden rule
 
-Quand tu travailles sur le template, modifie **dans `templates/{lang}/`**. Ne confonds jamais le `CLAUDE.md` racine (ce fichier, méta) avec `templates/{lang}/CLAUDE.md` (la méthodologie distribuée).
+When working on the template, edit **inside `templates/{lang}/`**. Never confuse the root `CLAUDE.md` (this file, meta) with `templates/{lang}/CLAUDE.md` (the distributed methodology).
 
-## Gérer les traductions
+## Managing translations
 
-Les traductions vivent dans `templates/` et sont versionnées. On ne les régénère pas à la volée — cela évite la divergence non-déterministe lors des mises à jour.
+Translations live in `templates/` and are versioned. They are never regenerated on the fly — this prevents non-deterministic drift when the template evolves.
 
-**Modifier une langue existante**
+**Editing an existing language**
 
-1. Modifie les fichiers dans `templates/{lang}/`
-2. Lance `/sync-langs` — Claude détecte la langue source depuis le diff git et propage les changements (diff-only) vers toutes les autres langues existantes
-3. Commite le tout
+1. Edit files in `templates/{lang}/`
+2. Run `/sync-langs` — Claude detects the source language from the git diff and propagates changes (diff-only) to all other existing languages
+3. Commit everything
 
-**Ajouter une nouvelle langue**
+**Adding a new language**
 
-Lance `/sync-langs {language}` (ex. `/sync-langs spanish`). Claude bootstrap `templates/spanish/` depuis l'anglais en suivant les règles de `TRANSLATION_RULES.md`, puis rappelle de commiter pour figer la traduction.
+Run `/sync-langs {language}` (e.g. `/sync-langs spanish`). Claude bootstraps `templates/spanish/` from English following the rules in `TRANSLATION_RULES.md`, then reminds you to commit to lock the translation.
 
-## Tester apply.sh
+## Testing apply.sh
 
-`apply.sh` télécharge le dépôt depuis GitHub, demande la langue souhaitée parmi les dossiers disponibles dans `templates/`, et copie le contenu à la racine du projet cible. Si la langue demandée n'existe pas, il affiche un prompt de traduction.
+`apply.sh` downloads the repo from GitHub, asks which language you want from the available folders in `templates/`, and copies the content to the target project root. If the requested language does not exist, it outputs a translation prompt.
