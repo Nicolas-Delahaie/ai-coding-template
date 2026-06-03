@@ -23,12 +23,32 @@ if [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
 fi
 
 curl -fsSL "https://github.com/$REPO/archive/$BRANCH.tar.gz" | tar xz -C "$TMP"
-SRC="$TMP/$(ls "$TMP")/template"
+REPO_ROOT="$TMP/$(ls "$TMP")"
+TEMPLATE_ROOT="$REPO_ROOT/templates"
+
+# Detect available languages (subfolders of templates/)
+available_langs=()
+for d in "$TEMPLATE_ROOT"/*/; do
+  [[ -d "$d" ]] && available_langs+=("$(basename "$d")")
+done
+
+printf "\n🌐 Language (available: %s) [%s]: " "${available_langs[*]}" "${available_langs[0]}"
+read -r chosen < /dev/tty
+chosen="${chosen:-${available_langs[0]}}"
+
+if [[ -d "$TEMPLATE_ROOT/$chosen" ]]; then
+  SRC="$TEMPLATE_ROOT/$chosen"
+  translation_required=false
+else
+  SRC="$TEMPLATE_ROOT/english"
+  translation_required=true
+fi
+
 ts=$(date +%Y%m%d-%H%M%S)
 backed_up=()
 synced=()
 
-# Copy every item shipped in template/ into the project root.
+# Copy every item shipped in templates/{lang}/ into the project root.
 shopt -s dotglob nullglob
 for path in "$SRC"/*; do
   item=$(basename "$path")
@@ -49,30 +69,18 @@ if [[ ${#backed_up[@]} -gt 0 ]]; then
   for f in "${backed_up[@]}"; do echo "    $f"; done
 fi
 
-printf "\n🌐 Keep the template in English? [Y/n] "
-read -r lang_choice < /dev/tty
-
-if [[ "$lang_choice" =~ ^[Nn]$ ]]; then
-  printf "🌐 Target language: "
-  read -r target_lang < /dev/tty
-
-  echo "📋 Paste this prompt into an AI to translate the template:"
+if $translation_required; then
+  echo ""
+  echo "📋 Paste this prompt into an AI to translate the template to ${chosen}:"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-  echo "Translate all content from English to ${target_lang}."
+  echo "Translate all content from english to ${chosen}."
   echo ""
   echo "Folders/files to translate (content only):"
   for item in "${synced[@]}"; do
     echo "  $item"
   done
-  cat <<'PROMPT'
-
-Rules — do NOT translate:
-  - File and folder names
-  - Frontmatter keys: id, title, type, priority, size, status, tags, created, updated
-  - Slash commands: /help, /refine, /dev
-  - Code blocks, file paths
-  - Technical terms: backlog, roadmap, ADR, YAGNI, spec, chore, spike
-PROMPT
+  echo ""
+  cat "$REPO_ROOT/TRANSLATION_RULES.md"
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 fi
 

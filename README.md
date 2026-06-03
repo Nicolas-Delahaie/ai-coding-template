@@ -22,14 +22,17 @@ Why it fits AI-assisted solo work: one feature in flight means the agent reasons
 
 ## What's inside
 
-Everything that ships lives under [`template/`](template/) — copied as-is into your project root by `apply.sh`:
+Everything that ships lives under [`templates/`](templates/) — one subfolder per language. `apply.sh` copies the chosen language into your project root:
 
 ```
-template/
-  CLAUDE.md        ← ~40 lines. The only always-loaded context.
-  .ai/             ← ADRs, conventions, glossary (loaded on demand)
-  backlog/         ← ideas/ tasks/ archive/ + ROADMAP.md (source of truth)
-  .claude/         ← slash commands + sub-agents (PM & Dev)
+templates/
+  english/
+    CLAUDE.md        ← ~40 lines. The only always-loaded context.
+    .ai/             ← ADRs, conventions, glossary (loaded on demand)
+    backlog/         ← ideas/ tasks/ archive/ + ROADMAP.md (source of truth)
+    .claude/         ← slash commands + sub-agents (PM & Dev)
+  french/
+    …
 ```
 
 Three slash commands cover the full workflow:
@@ -60,16 +63,16 @@ From the root of your target project:
 curl -fsSL https://raw.githubusercontent.com/Nicolas-Delahaie/ai-coding-template/main/apply.sh | bash
 ```
 
-The script downloads the template and copies everything under `template/` into your project root. Existing items are automatically backed up as `item.bak-TIMESTAMP` — **manually merge** any backed-up files into the new versions afterward. Then it asks once whether to keep the template in English or get a translation prompt. No machine install required — just curl and bash.
+The script downloads the template, lists available languages, and copies the chosen one into your project root. Existing items are automatically backed up as `item.bak-TIMESTAMP` — **manually merge** any backed-up files into the new versions afterward. If your language isn't available yet, the script outputs a translation prompt to bootstrap it. No machine install required — just curl and bash.
 
-> **Unix only** (macOS / Linux). On Windows or if you prefer: manually copy the contents of [`template/`](template/) from this repo into your project root.
+> **Unix only** (macOS / Linux). On Windows or if you prefer: manually copy the contents of [`templates/english/`](templates/english/) from this repo into your project root.
 
 ---
 
 ## Going further
 
-- [`template/CLAUDE.md`](template/CLAUDE.md) — the full methodology (~40 lines)
-- [`template/backlog/README.md`](template/backlog/README.md) — ticket workflow details
+- [`templates/english/CLAUDE.md`](templates/english/CLAUDE.md) — the full methodology (~40 lines)
+- [`templates/english/backlog/README.md`](templates/english/backlog/README.md) — ticket workflow details
 - In Claude Code, type `/help`
 
 ---
