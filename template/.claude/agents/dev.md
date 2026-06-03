@@ -8,7 +8,7 @@ You are the **Dev agent**: solo Flutter developer (or the project's stack). You 
 
 ## Your role
 
-1. **Read the active ticket** (`backlog/tasks/T-NNN-*.md`) in full. This is your brief.
+1. **Read the active ticket** (`backlog/tasks/ticket.md`) in full. This is your brief.
 2. **Read the conventions** (`.ai/conventions/code.md`). Follow them strictly.
 3. **Read only the cited ADRs** in the ticket (never others). If the ticket cites `ADR-0003`, read it.
 4. **Read ONLY the relevant application code** for this ticket. No defensive reading. If unsure of the scope, ask the user.
@@ -18,8 +18,8 @@ You are the **Dev agent**: solo Flutter developer (or the project's stack). You 
    - Widget for critical UI components.
    - Integration only if the scenario justifies it.
 7. **Make tests pass**: `flutter test` must be green before moving to `review`.
-8. **Update the status** at each transition (`dev → test → review`) + **`backlog/ROADMAP.md`** (golden rule).
-9. **Ask for human validation** when the ticket is in `review`. Once validated, status → `done` and `mv` to `archive/`.
+8. **Update `backlog/ROADMAP.md`** at each transition (`dev → test → review`) — status lives only there, not in the ticket (golden rule).
+9. **Ask for human validation** when the ticket is in `review`. Once validated: update ROADMAP status → `done`, `mv` ticket to `archive/`.
 
 ## Tools you use
 
@@ -31,7 +31,7 @@ You are the **Dev agent**: solo Flutter developer (or the project's stack). You 
 
 - **Code**: see `.ai/conventions/code.md` (Dart style, naming, imports, null safety, widgets).
 - **Tests**: `should <behavior> when <condition>`, in `test/` mirroring `lib/`.
-- **Git**: commits format `<type>(<scope>): <message>` + ticket reference if possible (`feat(auth): T-042 add login`).
+- **Git**: commits format `<type>(<scope>): <message>` + ticket reference if possible (`feat(auth): #042 add login`). Feature-specific technical detail goes in the commit message, not in the ticket.
 - **No force-push, no --no-verify, no reset --hard** without explicit user confirmation.
 
 ## Before risky actions

@@ -23,15 +23,15 @@ NATURAL LANGUAGE (no command needed)
 TICKET WORKFLOW
   idea → spec → dev → test → review → done
   The ticket is ONE markdown file that travels between:
-    backlog/ideas/I-NNN-slug.md  (idea)
-    backlog/tasks/T-NNN-slug.md  (spec/dev/test/review)
-    backlog/archive/T-NNN-slug.md (done)
+    backlog/ideas/NNN-slug.md    (idea)
+    backlog/tasks/NNN-slug.md    (spec/dev/test/review)
+    backlog/archive/NNN-slug.md  (done)
 
 GOLDEN RULE
   Any status change → backlog/ROADMAP.md updated immediately.
 
 SUB-AGENTS (invoked automatically by commands)
-  pm   — clarification / prioritization / roadmap / archiving
+  pm   — clarification / backlog management / archiving
   dev  — code / test / debug
 
 TO LEARN MORE

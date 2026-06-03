@@ -1,71 +1,56 @@
-# Backlog — Usage Guide
+# Backlog — Reference
 
-> **This file is NOT an index.** The global index is `backlog/ROADMAP.md` (root).
+> **This file is NOT an index.** The global index is `backlog/ROADMAP.md`.
 > For full history: `ls archive/`.
 
 ## Structure
 
 ```
 backlog/
-├── _template.md   # Ticket template. Copy via `cp`, don't edit in place.
-├── README.md      # This file.
-├── ideas/         # Tickets status: idea (unspecified drafts)
-├── tasks/         # Tickets status: spec | dev | test | review (active)
-└── archive/       # Tickets status: done
+├── _template.md   # Ticket template (cp to create a ticket, never edit in place)
+├── README.md      # This file — conventions reference
+├── ROADMAP.md     # Global index + all ticket metadata
+├── ideas/         # status: idea
+├── tasks/         # status: spec | dev | test | review
+└── archive/       # status: done
 ```
 
-## Naming conventions
+## Naming convention
 
-- **Raw idea**: `I-NNN-short-slug.md` (prefix `I` = idea)
-- **Specified task**: `T-NNN-short-slug.md` (prefix `T` = task)
-- The `NNN` number is **monotonically increasing** (never reused), regardless of I or T.
-- Slug is kebab-case, short, descriptive.
+- Ticket files are named **`NNN-slug.md`** — e.g. `042-email-password-auth.md`.
+- `NNN` is a **monotonically increasing global counter** (never reused), shared across all folders.
+- `slug` is a short kebab-case recap of the title. No `I`/`T` prefix.
+- Tickets have **no YAML frontmatter**. The title is the `# H1` of the file.
+- All metadata (title, type, size, status) lives only in `ROADMAP.md`.
+- A ticket **keeps its name for its whole life** — it only moves between folders. Rename only if the title changes substantially.
 
-Examples: `I-007-collaborative-mode.md`, `T-042-email-password-auth.md`.
-
-## Ticket workflow (6 statuses)
+## Ticket workflow
 
 ```
 idea → spec → dev → test → review → done
 ```
 
-| Status   | Meaning                                | Location             |
-| -------- | -------------------------------------- | -------------------- |
-| `idea`   | Draft, not yet explored                | `ideas/I-NNN-*.md`   |
-| `spec`   | Explored, AC defined, ready to tackle  | `tasks/T-NNN-*.md`   |
-| `dev`    | Being implemented                      | `tasks/T-NNN-*.md`   |
-| `test`   | Code written, tests being written/run  | `tasks/T-NNN-*.md`   |
-| `review` | Tests green, awaiting human validation | `tasks/T-NNN-*.md`   |
-| `done`   | Validated and archived                 | `archive/T-NNN-*.md` |
+| Status   | Meaning                                | Folder    |
+| -------- | -------------------------------------- | --------- |
+| `idea`   | Draft, not yet specified               | `ideas/`  |
+| `spec`   | AC defined + size set, ready to tackle | `tasks/`  |
+| `dev`    | Being implemented                      | `tasks/`  |
+| `test`   | Code done, tests being written/run     | `tasks/`  |
+| `review` | Tests green, awaiting human validation | `tasks/`  |
+| `done`   | Validated and archived                 | `archive/`|
 
-## Transitions (the file travels)
+Any status change must be reflected in **both** the folder and the ROADMAP — they are always in sync.
 
-```
-ideas/I-NNN-slug.md     ─(promotion)─►   tasks/T-NNN-slug.md   ─(archiving)─►   archive/T-NNN-slug.md
-       (idea)                              (spec → dev → test → review)              (done)
-```
+## Ticket metadata
 
-- **Promotion `idea → spec`**: `mv` + rename (`I-` → `T-`).
-- **Internal transitions (`spec → dev → test → review`)**: edit `status:` frontmatter only.
-- **Archiving `review → done`**: `mv` to `archive/`.
+Defined once in ROADMAP.md, never in the ticket file.
 
-**Golden rule**: every status transition → **immediate update** of `backlog/ROADMAP.md`.
-
-## Creating a new ticket
-
-```bash
-cp backlog/_template.md backlog/ideas/I-<NNN>-<slug>.md
-# Then edit the copied file: id, title, type, priority, size, dates, content.
-# Then update backlog/ROADMAP.md.
-```
-
-In practice, use `/refine` (the PM agent handles all of this).
+- **type**: `feature` (new capability) · `fix` (bug) · `chore` (maintenance/refacto) · `spike` (timeboxed exploration)
+- **size**: rough time bucket — `10min` · `1h` · `3h` · `3h+` (anything `3h+` → consider splitting)
 
 ## Acceptance criteria (AC)
 
-A list of verifiable checkboxes. Must answer: "how do I know this is done?".
-
-Examples:
+Verifiable checkboxes. Must answer: "how do I know this is done?".
 
 - ✅ `[ ] User can log in with a valid email + password`
 - ❌ `[ ] Authentication works` (too vague)
