@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "path=$(jq -r '.tool_input.file_path // empty' 2>/dev/null); [[ \"$path\" == *backlog/* && \"$path\" != *backlog/ROADMAP.md* ]] && echo 'Rappel regle d or: backlog/ a ete modifie. Verifie que backlog/ROADMAP.md reflete l etat actuel.' || true"
+          }
+        ]
+      }
+    ]
+  }
+}
