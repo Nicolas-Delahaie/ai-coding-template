@@ -1,20 +1,14 @@
 #!/bin/bash
 # ai-coding-template installer
-# Usage: curl -fsSL https://raw.githubusercontent.com/Nicolas-Delahaie/ai-coding-template/main/apply.sh | bash
+# Usage (remote): curl -fsSL https://raw.githubusercontent.com/Nicolas-Delahaie/ai-coding-template/main/apply.sh | bash
+# Usage (local):  ./apply.sh
 
 set -euo pipefail
 
 BRANCH="main"
 REPO="Nicolas-Delahaie/ai-coding-template"
 
-TMP=$(mktemp -d)
-trap 'rm -rf "$TMP"' EXIT
-
 echo "📦 ai-coding-template → $(pwd)"
-
-COMMIT=$(curl -fsSL "https://api.github.com/repos/$REPO/git/ref/heads/$BRANCH" \
-  | grep '"sha"' | head -1 | sed 's/.*"sha": "\([^"]*\)".*/\1/')
-[[ -z "$COMMIT" ]] && { echo "❌ Could not resolve template commit hash."; exit 1; }
 
 if [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
   printf "⚠️  Uncommitted changes detected — the install adds many files. Continue? [y/N] "
@@ -22,9 +16,26 @@ if [[ -n "$(git status --porcelain 2>/dev/null)" ]]; then
   [[ "$confirm" =~ ^[Yy]$ ]] || { echo "Aborted."; exit 1; }
 fi
 
-curl -fsSL "https://github.com/$REPO/archive/$BRANCH.tar.gz" | tar xz -C "$TMP"
-REPO_ROOT="$TMP/$(ls "$TMP")"
-TEMPLATE_ROOT="$REPO_ROOT/templates"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+
+if [[ -d "$SCRIPT_DIR/templates" ]]; then
+  # Local mode: tdemplates directory exists next to the script
+  REPO_ROOT="$SCRIPT_DIR"
+  TEMPLATE_ROOT="$SCRIPT_DIR/templates"
+  COMMIT="local"
+else
+  # Remote mode: download from GitHub
+  TMP=$(mktemp -d)
+  trap 'rm -rf "$TMP"' EXIT
+
+  COMMIT=$(curl -fsSL "https://api.github.com/repos/$REPO/git/ref/heads/$BRANCH" \
+    | grep '"sha"' | head -1 | sed 's/.*"sha": "\([^"]*\)".*/\1/')
+  [[ -z "$COMMIT" ]] && { echo "❌ Could not resolve template commit hash."; exit 1; }
+
+  curl -fsSL "https://github.com/$REPO/archive/$BRANCH.tar.gz" | tar xz -C "$TMP"
+  REPO_ROOT="$TMP/$(ls "$TMP")"
+  TEMPLATE_ROOT="$REPO_ROOT/templates"
+fi
 
 # Detect available languages (subfolders of templates/)
 available_langs=()
