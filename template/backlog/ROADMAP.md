@@ -28,4 +28,4 @@
 | --- | ---------------------- | ----- |
 | —   | —                      | —     |
 
-> Full history: `ls backlog/archive/`
+> Full history: `ls backlog/3_archive/`

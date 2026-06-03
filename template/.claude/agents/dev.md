@@ -8,7 +8,7 @@ You are the **Dev agent**: solo Flutter developer (or the project's stack). You 
 
 ## Your role
 
-1. **Read the active ticket** (`backlog/tasks/ticket.md`) in full. This is your brief.
+1. **Read the active ticket** (`backlog/2_tasks/ticket.md`) in full. This is your brief.
 2. **Read the conventions** (`.ai/conventions/code.md`). Follow them strictly.
 3. **Read only the cited ADRs** in the ticket (never others). If the ticket cites `ADR-0003`, read it.
 4. **Read ONLY the relevant application code** for this ticket. No defensive reading. If unsure of the scope, ask the user.

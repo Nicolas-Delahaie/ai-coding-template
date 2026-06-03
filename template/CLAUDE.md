@@ -14,9 +14,9 @@ AI methodology for this project. Stay lean: only load what the current task need
 
 | Type of info                    | Destination                                             |
 | ------------------------------- | ------------------------------------------------------- |
-| Raw idea (unspecified)          | `backlog/ideas/NNN-slug.md`                             |
-| Specified / active task         | `backlog/tasks/NNN-slug.md`                             |
-| Completed task                  | `backlog/archive/NNN-slug.md`                           |
+| Raw idea (unspecified)          | `backlog/1_ideas/NNN-slug.md`                             |
+| Specified / active task         | `backlog/2_tasks/NNN-slug.md`                             |
+| Completed task                  | `backlog/3_archive/NNN-slug.md`                           |
 | Global arch/tech decision (ADR) | `.ai/decisions/NNNN-title.md` (copy `_template.md`)     |
 | Feature-specific tech detail    | commit message (`<type>(<scope>): ...`), not the ticket |
 | Code convention                 | `.ai/conventions/code.md`                               |

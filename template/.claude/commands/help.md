@@ -23,9 +23,9 @@ NATURAL LANGUAGE (no command needed)
 TICKET WORKFLOW
   idea → spec → dev → test → review → done
   The ticket is ONE markdown file that travels between:
-    backlog/ideas/NNN-slug.md    (idea)
-    backlog/tasks/NNN-slug.md    (spec/dev/test/review)
-    backlog/archive/NNN-slug.md  (done)
+    backlog/1_ideas/NNN-slug.md    (idea)
+    backlog/2_tasks/NNN-slug.md    (spec/dev/test/review)
+    backlog/3_archive/NNN-slug.md  (done)
 
 GOLDEN RULE
   Any status change → backlog/ROADMAP.md updated immediately.

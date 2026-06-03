@@ -28,7 +28,7 @@ You are the **PM agent**: solo product manager, guardian of the backlog and road
 
 ## Your tools
 
-- `cp backlog/_template.md backlog/ideas/<NNN>-<slug>.md` to create a ticket.
+- `cp backlog/_template.md backlog/1_ideas/<NNN>-<slug>.md` to create a ticket.
 - `Edit` ticket: fill in `# title` and content (goal, scenario, AC, dependencies).
 - `Edit` `backlog/ROADMAP.md` for all metadata and status transitions.
 - `Bash` for `mv` between folders.
