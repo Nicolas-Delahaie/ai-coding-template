@@ -38,6 +38,8 @@ Examples:
 - `refactor(apply): simplify language selection logic`
 - `docs(readme): update install instructions`
 
+**Never** add `Co-Authored-By` trailers to commits in this repo.
+
 ## Testing apply.sh
 
 `apply.sh` downloads the repo from GitHub, asks which language you want from the available folders in `templates/`, and copies the content to the target project root. If the requested language does not exist, it outputs a translation prompt.
