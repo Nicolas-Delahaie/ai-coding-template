@@ -26,6 +26,18 @@ Translations live in `templates/` and are versioned. They are never regenerated 
 
 Run `/sync-langs {language}` (e.g. `/sync-langs spanish`). Claude bootstraps `templates/spanish/` from English following the rules in `TRANSLATION_RULES.md`, then reminds you to commit to lock the translation.
 
+## Commit conventions
+
+`<type>(<scope>): <summary>`
+
+Types: `feat` · `fix` · `refactor` · `docs` · `chore`
+Scope (optional): `install` · `template` · `apply` · `sync` · `readme`
+
+Examples:
+- `feat(sync): add --from flag to force source language`
+- `refactor(apply): simplify language selection logic`
+- `docs(readme): update install instructions`
+
 ## Testing apply.sh
 
 `apply.sh` downloads the repo from GitHub, asks which language you want from the available folders in `templates/`, and copies the content to the target project root. If the requested language does not exist, it outputs a translation prompt.
