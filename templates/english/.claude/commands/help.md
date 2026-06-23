@@ -37,7 +37,7 @@ SUB-AGENTS (invoked automatically by commands)
 TO LEARN MORE
   CLAUDE.md           golden rules + routing table
   backlog/README.md   detailed ticket workflow
-  .ai/conventions/    code conventions
-  .ai/decisions/      ADRs (tech decisions)
-  .ai/DESIGN.md       framework design decisions (read on demand only)
+  docs/conventions/   code conventions
+  docs/decisions/     ADRs (tech decisions)
+  docs/DESIGN.md      framework design decisions (read on demand only)
 ```

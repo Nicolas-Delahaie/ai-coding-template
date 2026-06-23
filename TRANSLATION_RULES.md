@@ -6,7 +6,7 @@ Do NOT translate:
 - Slash commands: /help, /refine, /dev
 - Code blocks, file paths
 - Placeholder patterns: NNN-slug.md, NNNN-title.md
-- Technical terms: backlog, roadmap, ADR, YAGNI, spec, chore, spike, CLAUDE.md, .ai/, .claude/
+- Technical terms: backlog, roadmap, ADR, YAGNI, spec, chore, spike, CLAUDE.md, docs/, .claude/
 
 DO translate:
 - All prose, descriptions, comments

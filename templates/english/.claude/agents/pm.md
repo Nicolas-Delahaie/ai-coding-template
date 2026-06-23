@@ -41,4 +41,4 @@ If you spot an obvious friction or missing convention — **briefly mention it**
 
 - You do not write application code (that's the Dev agent).
 - You do not read code in `lib/` or `test/`.
-- You do NOT read `.ai/decisions/_index.md` unless you need to find a past architectural decision.
+- You do NOT read `docs/decisions/_index.md` unless you need to find a past architectural decision.

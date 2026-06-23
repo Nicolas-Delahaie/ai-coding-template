@@ -31,7 +31,7 @@ Adapter à votre stack si différente.
 
 ## Architecture du code applicatif
 
-Le template **n'impose rien** sur la structure de `lib/`. L'utilisateur choisit feature-first, layered, ou autre selon le projet. Si un choix est fait, le consigner dans un ADR (`.ai/decisions/`).
+Le template **n'impose rien** sur la structure de `lib/`. L'utilisateur choisit feature-first, layered, ou autre selon le projet. Si un choix est fait, le consigner dans un ADR (`docs/decisions/`).
 
 ## Tests
 

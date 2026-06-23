@@ -28,7 +28,7 @@ Everything that ships lives under [`templates/`](templates/) — one subfolder p
 templates/
   english/
     CLAUDE.md        ← ~40 lines. The only always-loaded context.
-    .ai/             ← ADRs, conventions, glossary (loaded on demand)
+    docs/            ← ADRs, conventions, glossary (loaded on demand)
     backlog/         ← ideas/ tasks/ archive/ + ROADMAP.md (source of truth)
     .claude/         ← slash commands + sub-agents (PM & Dev)
   french/
@@ -98,13 +98,13 @@ A **feature-based, agile-inspired** workflow (see [Approach](#approach--feature-
 | 7   | Ticket schema: `type` + `priority` + `size` + `status` + AC              | Rich enough for solo prioritization, without over-engineering                                |
 | 8   | `backlog/ROADMAP.md` in `backlog/`, not at root                          | Co-located with the tickets it indexes. Root stays clean. Git versions all history.          |
 | 9   | No separate `INDEX.md` in `backlog/`                                     | `ROADMAP.md` plays that role. Full history via `ls backlog/archive/`.                        |
-| 10  | Methodology in `.ai/` (separate from `.claude/`)                         | `.claude/` = native Claude Code configs. `.ai/` = project methodology                        |
-| 11  | Code conventions: 1 file `.ai/conventions/code.md`                       | One file to read, no scatter                                                                 |
+| 10  | Methodology in `docs/` (separate from `.claude/`)                        | `.claude/` = native Claude Code configs. `docs/` = project methodology                       |
+| 11  | Code conventions: 1 file `docs/conventions/code.md`                      | One file to read, no scatter                                                                 |
 | 12  | Business glossary: not created by default                                | Optional — avoids polluting with an empty file                                               |
 | 13  | Template does NOT touch `lib/` or application code                       | Template = AI methodology only. Code is added by the user, as they wish.                     |
 | 14  | Meta-files prefixed `_` (`_template.md`, `_index.md`)                    | Visually distinct from real numbered files, sort to top in `ls`                              |
 | 15  | Physical ticket and ADR templates: `_template.md` next to their folder   | Copied via `cp` then renamed/edited. No inline format in READMEs (token economy).            |
-| 16  | ADR index: `.ai/decisions/_index.md`                                     | One line per ADR. Loaded only when the agent needs to find a past decision.                  |
+| 16  | ADR index: `docs/decisions/_index.md`                                    | One line per ADR. Loaded only when the agent needs to find a past decision.                  |
 | 17  | Distribution via curlable `apply.sh`                                     | Zero machine install. `degit`/`copier`/`npx` rejected (require install or blindly overwrite) |
 | 18  | `README.md` and `.gitignore` not copied by `apply.sh`                    | The target project owns both. We don't overwrite them.                                       |
 | 19  | Minimalist README, no overlap with `CLAUDE.md`                           | README = human presentation. Methodology = `CLAUDE.md`. Two sources means drift.             |

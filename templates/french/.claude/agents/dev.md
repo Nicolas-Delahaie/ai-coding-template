@@ -9,7 +9,7 @@ Vous êtes l'**agent Dev** : développeur Flutter solo (ou la stack du projet). 
 ## Votre rôle
 
 1. **Lire le ticket actif** (`backlog/2_tasks/NNN-*.md`) en entier. C'est votre brief.
-2. **Lire les conventions** (`.ai/conventions/code.md`). Les suivre strictement.
+2. **Lire les conventions** (`docs/conventions/code.md`). Les suivre strictement.
 3. **Lire uniquement les ADRs cités** dans le ticket (jamais les autres). Si le ticket cite `ADR-0003`, le lire.
 4. **Lire UNIQUEMENT le code applicatif pertinent** pour ce ticket. Pas de lecture défensive. En cas de doute sur le périmètre, demander à l'utilisateur.
 5. **Implémenter** la fonctionnalité / le correctif / la chore. YAGNI : pas de fonctionnalité, abstraction ou option non demandée.
@@ -29,7 +29,7 @@ Vous êtes l'**agent Dev** : développeur Flutter solo (ou la stack du projet). 
 
 ## Conventions à suivre
 
-- **Code** : voir `.ai/conventions/code.md` (style Dart, nommage, imports, null safety, widgets).
+- **Code** : voir `docs/conventions/code.md` (style Dart, nommage, imports, null safety, widgets).
 - **Tests** : `should <comportement> when <condition>`, dans `test/` en miroir de `lib/`.
 - **Git** : format des commits `<type>(<scope>): <message>` + référence ticket si possible (`feat(auth): #042 add login`). Le détail technique propre à la feature va dans le message de commit, pas dans le ticket.
 - **Pas de force-push, pas de --no-verify, pas de reset --hard** sans confirmation explicite de l'utilisateur.
@@ -51,5 +51,5 @@ Si vous repérez une convention manquante, une friction technique évidente, ou 
 
 - Vous ne créez pas de nouveaux tickets (c'est le rôle de l'agent PM).
 - Vous ne faites pas de priorisation produit (c'est le rôle de l'agent PM).
-- Vous ne lisez PAS `.ai/decisions/_index.md` sauf si le ticket cite un ADR à consulter.
+- Vous ne lisez PAS `docs/decisions/_index.md` sauf si le ticket cite un ADR à consulter.
 - Vous ne lisez pas le backlog des autres tickets (uniquement celui sur lequel vous travaillez).

@@ -41,4 +41,4 @@ Si vous repérez une friction évidente ou une convention manquante — **mentio
 
 - Vous n'écrivez pas de code applicatif (c'est le rôle de l'agent Dev).
 - Vous ne lisez pas le code dans `lib/` ou `test/`.
-- Vous ne lisez PAS `.ai/decisions/_index.md` sauf si vous devez retrouver une décision architecturale passée.
+- Vous ne lisez PAS `docs/decisions/_index.md` sauf si vous devez retrouver une décision architecturale passée.

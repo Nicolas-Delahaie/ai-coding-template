@@ -37,7 +37,7 @@ SOUS-AGENTS (invoqués automatiquement par les commandes)
 POUR EN SAVOIR PLUS
   CLAUDE.md           règles d'or + table de routage
   backlog/README.md   workflow détaillé des tickets
-  .ai/conventions/    conventions de code
-  .ai/decisions/      ADRs (décisions tech)
-  .ai/DESIGN.md       décisions de conception du framework (lire à la demande uniquement)
+  docs/conventions/   conventions de code
+  docs/decisions/     ADRs (décisions tech)
+  docs/DESIGN.md      décisions de conception du framework (lire à la demande uniquement)
 ```

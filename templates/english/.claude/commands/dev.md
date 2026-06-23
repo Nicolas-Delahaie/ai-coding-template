@@ -24,8 +24,8 @@ Invoke the `dev` sub-agent via the Agent tool with this context:
 > Mission: implement ticket `$ARGUMENTS`.
 >
 > 1. Read `backlog/2_tasks/$ARGUMENTS-*.md` in full.
-> 2. Read `.ai/conventions/code.md`.
-> 3. If the ticket cites ADRs (`.ai/decisions/NNNN-*.md`), read those specifically (NOT the others).
+> 2. Read `docs/conventions/code.md`.
+> 3. If the ticket cites ADRs (`docs/decisions/NNNN-*.md`), read those specifically (NOT the others).
 > 4. Read ONLY the application code relevant to this ticket.
 > 5. Implement the feature / fix / chore. Strictly follow conventions.
 > 6. Write the necessary tests (`flutter test` must pass). Status → `test` while writing tests.

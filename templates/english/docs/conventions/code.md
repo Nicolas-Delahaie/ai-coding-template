@@ -31,7 +31,7 @@ Adapt to your stack if different.
 
 ## Application code architecture
 
-The template **imposes nothing** on the `lib/` structure. The user chooses feature-first, layered, or other based on the project. If a choice is made, record it in an ADR (`.ai/decisions/`).
+The template **imposes nothing** on the `lib/` structure. The user chooses feature-first, layered, or other based on the project. If a choice is made, record it in an ADR (`docs/decisions/`).
 
 ## Tests
 

@@ -7,7 +7,7 @@ AI methodology for this project. Stay lean: only load what the current task need
 1. **Roadmap = source of truth.** Any ticket status change → update `backlog/ROADMAP.md` immediately.
 2. **Minimal context.** Only read files useful for the current task. No defensive reading.
 3. **Clarify before storing.** Before writing a new idea/task, ask questions (goal, scenario, success criteria).
-4. **NEVER read `.ai/DESIGN.md`** unless the user explicitly asks.
+4. **NEVER read `docs/DESIGN.md`** unless the user explicitly asks.
 5. **Self-improve.** If an instruction feels wrong or missing for the situation, say so and propose a fix directly in this file.
 
 ## Where to store what (routing)
@@ -17,10 +17,10 @@ AI methodology for this project. Stay lean: only load what the current task need
 | Raw idea (unspecified)          | `backlog/1_ideas/NNN-slug.md`                             |
 | Specified / active task         | `backlog/2_tasks/NNN-slug.md`                             |
 | Completed task                  | `backlog/3_archive/NNN-slug.md`                           |
-| Global arch/tech decision (ADR) | `.ai/decisions/NNNN-title.md` (copy `_template.md`)     |
+| Global arch/tech decision (ADR) | `docs/decisions/NNNN-title.md` (copy `_template.md`)    |
 | Feature-specific tech detail    | commit message (`<type>(<scope>): ...`), not the ticket |
-| Code convention                 | `.ai/conventions/code.md`                               |
-| Business vocabulary             | `.ai/glossary.md` (create if needed)                    |
+| Code convention                 | `docs/conventions/code.md`                              |
+| Business vocabulary             | `docs/glossary.md` (create if needed)                   |
 | Global backlog state            | `backlog/ROADMAP.md` (always up to date)                |
 
 ## Ticket workflow
