@@ -19,18 +19,18 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 if [[ -d "$SCRIPT_DIR/templates" ]]; then
-  # Local mode: tdemplates directory exists next to the script
+  # Local mode: templates directory exists next to the script
   REPO_ROOT="$SCRIPT_DIR"
   TEMPLATE_ROOT="$SCRIPT_DIR/templates"
-  COMMIT="local"
+  TEMPLATE_COMMIT=$(git -C "$SCRIPT_DIR" rev-parse HEAD)
 else
   # Remote mode: download from GitHub
   TMP=$(mktemp -d)
   trap 'rm -rf "$TMP"' EXIT
 
-  COMMIT=$(curl -fsSL "https://api.github.com/repos/$REPO/git/ref/heads/$BRANCH" \
+  TEMPLATE_COMMIT=$(curl -fsSL "https://api.github.com/repos/$REPO/git/ref/heads/$BRANCH" \
     | grep '"sha"' | head -1 | sed 's/.*"sha": "\([^"]*\)".*/\1/')
-  [[ -z "$COMMIT" ]] && { echo "❌ Could not resolve template commit hash."; exit 1; }
+  [[ -z "$TEMPLATE_COMMIT" ]] && { echo "❌ Could not resolve template commit hash."; exit 1; }
 
   curl -fsSL "https://github.com/$REPO/archive/$BRANCH.tar.gz" | tar xz -C "$TMP"
   REPO_ROOT="$TMP/$(ls "$TMP")"
@@ -95,9 +95,9 @@ if $translation_required; then
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 fi
 
-if [[ -n "$COMMIT" ]]; then
+if [[ -n "$TEMPLATE_COMMIT" ]]; then
   echo "💡 Suggested commit:"
-  echo "   git commit -m \"chore: apply ai-coding-template@${COMMIT:0:7}\""
+  echo "   git commit -m \"chore: apply ai-coding-template@${TEMPLATE_COMMIT:0:7}\""
   echo ""
 fi
 
