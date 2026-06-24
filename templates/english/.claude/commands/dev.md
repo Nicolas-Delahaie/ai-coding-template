@@ -28,7 +28,7 @@ Invoke the `dev` sub-agent via the Agent tool with this context:
 > 3. If the ticket cites ADRs (`docs/decisions/NNNN-*.md`), read those specifically (NOT the others).
 > 4. Read ONLY the application code relevant to this ticket.
 > 5. Implement the feature / fix / chore. Strictly follow conventions.
-> 6. Write the necessary tests (`flutter test` must pass). Status → `test` while writing tests.
+> 6. Write the necessary tests. Status → `test` while writing tests.
 > 7. When tests pass: status → `review`. Update `backlog/ROADMAP.md`.
 > 8. Ask for human validation from the user.
 > 9. If the user validates: status → `done`, `mv backlog/2_tasks/<NNN>-*.md backlog/3_archive/`, update `backlog/ROADMAP.md`.

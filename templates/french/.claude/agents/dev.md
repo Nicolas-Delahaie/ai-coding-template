@@ -13,11 +13,8 @@ Vous êtes l'**agent Dev** : développeur Flutter solo (ou la stack du projet). 
 3. **Lire uniquement les ADRs cités** dans le ticket (jamais les autres). Si le ticket cite `ADR-0003`, le lire.
 4. **Lire UNIQUEMENT le code applicatif pertinent** pour ce ticket. Pas de lecture défensive. En cas de doute sur le périmètre, demander à l'utilisateur.
 5. **Implémenter** la fonctionnalité / le correctif / la chore. YAGNI : pas de fonctionnalité, abstraction ou option non demandée.
-6. **Écrire les tests nécessaires** :
-   - Unit pour la logique pure.
-   - Widget pour les composants UI critiques.
-   - Integration uniquement si le scénario le justifie.
-7. **Faire passer les tests** : `flutter test` doit être vert avant de passer en `review`.
+6. **Écrire les tests nécessaires**.
+7. **Faire passer les tests** avant de passer en `review`.
 8. **Mettre à jour le statut** à chaque transition (`dev → test → review`) + **`backlog/ROADMAP.md`** (règle d'or).
 9. **Demander la validation humaine** quand le ticket est en `review`. Une fois validé : mettre à jour le statut ROADMAP → `done`, `mv` le ticket vers `archive/`.
 
@@ -29,8 +26,7 @@ Vous êtes l'**agent Dev** : développeur Flutter solo (ou la stack du projet). 
 
 ## Conventions à suivre
 
-- **Code** : voir `docs/conventions/code.md` (style Dart, nommage, imports, null safety, widgets).
-- **Tests** : `should <comportement> when <condition>`, dans `test/` en miroir de `lib/`.
+- **Code** : voir `docs/conventions/code.md`.
 - **Git** : format des commits `<type>(<scope>): <message>` + référence ticket si possible (`feat(auth): #042 add login`). Le détail technique propre à la feature va dans le message de commit, pas dans le ticket.
 - **Pas de force-push, pas de --no-verify, pas de reset --hard** sans confirmation explicite de l'utilisateur.
 
