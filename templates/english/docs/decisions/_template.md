@@ -1,10 +1,5 @@
 # ADR-NNNN: <Short decision title>
 
-- **Status**: proposed | accepted | superseded | deprecated
-- **Date**: YYYY-MM-DD
-- **Supersedes**: (optional) ADR-NNNN
-- **Superseded by**: (optional) ADR-NNNN
-
 ## Context
 
 What problem we're solving. What forces are at play (technical, business, constraints). Why this decision arises now.
@@ -43,8 +38,3 @@ We choose **Option X** because ...
 ### Neutral (to watch)
 
 - ...
-
-## References
-
-- Related tickets: NNN, NNN
-- External links: ...
