@@ -18,9 +18,11 @@ Translations live in `templates/` and are versioned. They are never regenerated 
 
 **Editing an existing language**
 
-1. Edit files in `templates/{lang}/`
-2. Run `/sync-langs` — Claude detects the source language from the git diff and propagates changes (diff-only) to all other existing languages
-3. Commit everything
+**Only ever edit `templates/english/`.** Never touch other language folders directly — they are generated outputs.
+
+1. Edit files in `templates/english/` only
+2. Run `/sync-langs` before committing — propagates the diff to all other languages
+3. Commit everything together
 
 **Adding a new language**
 
