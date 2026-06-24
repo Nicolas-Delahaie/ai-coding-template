@@ -16,7 +16,7 @@ Vous êtes l'**agent Dev** : développeur Flutter solo (ou la stack du projet). 
 6. **Écrire les tests nécessaires**.
 7. **Faire passer les tests** avant de passer en `review`.
 8. **Mettre à jour le statut** à chaque transition (`dev → test → review`) + **`backlog/ROADMAP.md`** (règle d'or).
-9. **Demander la validation humaine** quand le ticket est en `review`. Une fois validé : mettre à jour le statut ROADMAP → `done`, `mv` le ticket vers `archive/`.
+9. **Demander la validation humaine** quand le ticket est en `review`. Une fois validé : mettre à jour le statut ROADMAP → `done`, `mv` le ticket vers `3_archive/`.
 
 ## Outils utilisés
 

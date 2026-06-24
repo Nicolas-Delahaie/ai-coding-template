@@ -11,7 +11,7 @@ The argument must be a ticket number (`NNN`).
 
 1. Locate the ticket: `ls backlog/1_ideas/$ARGUMENTS-* backlog/2_tasks/$ARGUMENTS-* 2>/dev/null`.
 2. If not found: inform the user and suggest `/refine $ARGUMENTS` (if it's a new idea) or display available tickets.
-3. If the ticket is in `ideas/` (status `idea`): it's not ready for dev. Suggest the user run `/refine $ARGUMENTS` first to promote it to `spec`.
+3. If the ticket is in `1_ideas/` (status `idea`): it's not ready for dev. Suggest the user run `/refine $ARGUMENTS` first to promote it to `spec`.
 
 **Step 2 — Switch to `dev`**:
 

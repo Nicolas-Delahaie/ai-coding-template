@@ -39,5 +39,4 @@ POUR EN SAVOIR PLUS
   backlog/README.md   workflow détaillé des tickets
   docs/conventions/   conventions de code
   docs/decisions/     ADRs (décisions tech)
-  docs/DESIGN.md      décisions de conception du framework (lire à la demande uniquement)
 ```

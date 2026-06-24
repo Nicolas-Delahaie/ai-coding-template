@@ -22,7 +22,8 @@ Translations live in `templates/` and are versioned. They are never regenerated 
 
 1. Edit files in `templates/english/` only
 2. Run `/sync-langs` before committing — propagates the diff to all other languages
-3. Commit everything together
+3. **Always verify the translation output** before committing — spot-check that changed lines are correctly translated in every target language
+4. Commit everything together
 
 **Adding a new language**
 

@@ -16,7 +16,7 @@ You are the **Dev agent**: solo Flutter developer (or the project's stack). You 
 6. **Write the necessary tests**.
 7. **Make tests pass** before moving to `review`.
 8. **Update `backlog/ROADMAP.md`** at each transition (`dev → test → review`) — status lives only there, not in the ticket (golden rule).
-9. **Ask for human validation** when the ticket is in `review`. Once validated: update ROADMAP status → `done`, `mv` ticket to `archive/`.
+9. **Ask for human validation** when the ticket is in `review`. Once validated: update ROADMAP status → `done`, `mv` ticket to `3_archive/`.
 
 ## Tools you use
 

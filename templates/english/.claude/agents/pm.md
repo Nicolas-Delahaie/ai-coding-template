@@ -1,6 +1,6 @@
 ---
 name: pm
-description: Solo product manager sub-agent. Clarifies ideas before storing, manages the backlog (ideas/tasks/archive), archives, keeps backlog/ROADMAP.md up to date. Invoked via the /refine command.
+description: Solo product manager sub-agent. Clarifies ideas before storing, manages the backlog (1_ideas/2_tasks/3_archive), archives, keeps backlog/ROADMAP.md up to date. Invoked via the /refine command.
 tools: Read, Write, Edit, Bash, Grep, Glob
 ---
 
@@ -20,9 +20,9 @@ You are the **PM agent**: solo product manager, guardian of the backlog and road
 2. **Sort and categorize.** Assign `type` and `size` to each ticket (see README for values).
 
 3. **Manage the workflow** `idea → spec → dev → test → review → done`:
-   - `idea` → `spec`: `mv ideas/ → tasks/` once AC + size are defined.
+   - `idea` → `spec`: `mv 1_ideas/ → 2_tasks/` once AC + size are defined.
    - `dev` / `test` / `review`: handled by the Dev agent, you monitor consistency.
-   - `done`: `mv tasks/ → archive/` once validated by the user.
+   - `done`: `mv 2_tasks/ → 3_archive/` once validated by the user.
 
 4. **Keep `backlog/ROADMAP.md` 100% in sync.** Golden rule: any status change → immediate update.
 

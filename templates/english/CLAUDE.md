@@ -7,8 +7,7 @@ AI methodology for this project. Stay lean: only load what the current task need
 1. **Roadmap = source of truth.** Any ticket status change → update `backlog/ROADMAP.md` immediately.
 2. **Minimal context.** Only read files useful for the current task. No defensive reading.
 3. **Clarify before storing.** Before writing a new idea/task, ask questions (goal, scenario, success criteria).
-4. **NEVER read `docs/DESIGN.md`** unless the user explicitly asks.
-5. **Self-improve.** If an instruction feels wrong or missing for the situation, say so and propose a fix directly in this file.
+4. **Self-improve.** If an instruction feels wrong or missing for the situation, say so and propose a fix directly in this file.
 
 ## Where to store what (routing)
 

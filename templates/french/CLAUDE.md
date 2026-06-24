@@ -7,8 +7,7 @@ Méthodologie IA pour ce projet. Rester léger : ne charger que ce dont la tâch
 1. **Roadmap = source de vérité.** Tout changement de statut d'un ticket → mettre à jour `backlog/ROADMAP.md` immédiatement.
 2. **Contexte minimal.** Ne lire que les fichiers utiles à la tâche en cours. Pas de lecture défensive.
 3. **Clarifier avant de stocker.** Avant d'écrire une nouvelle idée/tâche, poser des questions (objectif, scénario, critères de succès).
-4. **NE JAMAIS lire `docs/DESIGN.md`** sauf si l'utilisateur le demande explicitement.
-5. **S'auto-améliorer.** Si une instruction semble incorrecte ou manquante pour la situation, le dire et proposer un correctif directement dans ce fichier.
+4. **S'auto-améliorer.** Si une instruction semble incorrecte ou manquante pour la situation, le dire et proposer un correctif directement dans ce fichier.
 
 ## Où stocker quoi (routage)
 

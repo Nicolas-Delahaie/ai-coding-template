@@ -1,7 +1,7 @@
 # Backlog — Référence
 
 > **Ce fichier N'est PAS un index.** L'index global est `backlog/ROADMAP.md`.
-> Pour l'historique complet : `ls archive/`.
+> Pour l'historique complet : `ls backlog/3_archive/`.
 
 ## Structure
 
@@ -10,9 +10,9 @@ backlog/
 ├── _template.md   # Modèle de ticket (cp pour créer un ticket, ne jamais modifier en place)
 ├── README.md      # Ce fichier — référence des conventions
 ├── ROADMAP.md     # Index global + toutes les métadonnées des tickets
-├── ideas/         # statut : idea
-├── tasks/         # statut : spec | dev | test | review
-└── archive/       # statut : done
+├── 1_ideas/       # statut : idea
+├── 2_tasks/       # statut : spec | dev | test | review
+└── 3_archive/     # statut : done
 ```
 
 ## Convention de nommage
@@ -30,14 +30,14 @@ backlog/
 idea → spec → dev → test → review → done
 ```
 
-| Statut   | Signification                                   | Dossier    |
-| -------- | ----------------------------------------------- | ---------- |
-| `idea`   | Brouillon, pas encore spécifié                  | `ideas/`   |
-| `spec`   | AC définis + size fixée, prêt à traiter         | `tasks/`   |
-| `dev`    | En cours d'implémentation                       | `tasks/`   |
-| `test`   | Code terminé, tests en cours d'écriture/exéc.   | `tasks/`   |
-| `review` | Tests au vert, en attente de validation humaine | `tasks/`   |
-| `done`   | Validé et archivé                               | `archive/` |
+| Statut   | Signification                                   | Dossier      |
+| -------- | ----------------------------------------------- | ------------ |
+| `idea`   | Brouillon, pas encore spécifié                  | `1_ideas/`   |
+| `spec`   | AC définis + size fixée, prêt à traiter         | `2_tasks/`   |
+| `dev`    | En cours d'implémentation                       | `2_tasks/`   |
+| `test`   | Code terminé, tests en cours d'écriture/exéc.   | `2_tasks/`   |
+| `review` | Tests au vert, en attente de validation humaine | `2_tasks/`   |
+| `done`   | Validé et archivé                               | `3_archive/` |
 
 Tout changement de statut doit être reflété dans **à la fois** le dossier et le ROADMAP — ils sont toujours synchronisés.
 

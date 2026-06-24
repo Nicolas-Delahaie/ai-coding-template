@@ -1,7 +1,7 @@
 # Backlog — Reference
 
 > **This file is NOT an index.** The global index is `backlog/ROADMAP.md`.
-> For full history: `ls archive/`.
+> For full history: `ls backlog/3_archive/`.
 
 ## Structure
 
@@ -10,9 +10,9 @@ backlog/
 ├── _template.md   # Ticket template (cp to create a ticket, never edit in place)
 ├── README.md      # This file — conventions reference
 ├── ROADMAP.md     # Global index + all ticket metadata
-├── ideas/         # status: idea
-├── tasks/         # status: spec | dev | test | review
-└── archive/       # status: done
+├── 1_ideas/       # status: idea
+├── 2_tasks/       # status: spec | dev | test | review
+└── 3_archive/     # status: done
 ```
 
 ## Naming convention
@@ -30,14 +30,14 @@ backlog/
 idea → spec → dev → test → review → done
 ```
 
-| Status   | Meaning                                | Folder    |
-| -------- | -------------------------------------- | --------- |
-| `idea`   | Draft, not yet specified               | `ideas/`  |
-| `spec`   | AC defined + size set, ready to tackle | `tasks/`  |
-| `dev`    | Being implemented                      | `tasks/`  |
-| `test`   | Code done, tests being written/run     | `tasks/`  |
-| `review` | Tests green, awaiting human validation | `tasks/`  |
-| `done`   | Validated and archived                 | `archive/`|
+| Status   | Meaning                                | Folder       |
+| -------- | -------------------------------------- | ------------ |
+| `idea`   | Draft, not yet specified               | `1_ideas/`   |
+| `spec`   | AC defined + size set, ready to tackle | `2_tasks/`   |
+| `dev`    | Being implemented                      | `2_tasks/`   |
+| `test`   | Code done, tests being written/run     | `2_tasks/`   |
+| `review` | Tests green, awaiting human validation | `2_tasks/`   |
+| `done`   | Validated and archived                 | `3_archive/` |
 
 Any status change must be reflected in **both** the folder and the ROADMAP — they are always in sync.
 
